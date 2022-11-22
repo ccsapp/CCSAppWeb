@@ -5,13 +5,12 @@
 
 ## Implementation and Tests
 
-[Okta Configuration](https://git.scc.kit.edu/cm-tm/cm-team/connectedcar/mulesoftarchitecture/connectedcarservicesapplication/docccsapp/-/blob/master/pages/ccsapp_okta_integration.md)
+[OIDC Configuration](./pages/authentication.md)
 
 [Local Installation](./pages/installation.md)
 
 [Tests (Karma)](./pages/tests.md)
 
-[DevOps Configurations](./pages/devops.md)
 
 
 ## Angular
