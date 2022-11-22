@@ -1,0 +1,138 @@
+base-chart:
+  # Default values for Central Template Chat.
+  # Declare variables to be passed into your templates.
+
+  affinity: {}
+
+  extraEnvVars:
+    # How-To: Remove to square brakets array placeholder in the line above if you wanna define additional environment variables
+    # Example for adding a defined value to a Pod/Container
+    # - name: PACT_BROKER_PORT
+    #   value: '9292'
+    # - name: PACT_BROKER_DATABASE_URL
+    #   value: "postgres://postgres:postgres@postgres/postgresDB"
+    # Example how to mount a key from a secret as environment variable
+    # - name: ELASTIC_PASSWORD 
+    #   valueFrom:
+    #     secretKeyRef:
+    #       name: cm-elasticsearch-secret  
+    #       key: password
+
+  fullnameOverride: ""
+
+  image:
+    repository: $IMAGE_FULL_NAME
+    pullPolicy: IfNotPresent
+
+  imagePullSecrets: []
+  nameOverride: ""
+
+  ingress:
+    enabled: enabled
+    # HTTP traffic will be forwarded to HTTPS
+    redirectHttp: true
+    # Allows the Ingress to be accessible from the outside, enable only if required since DNS could take more then 2h
+    publicAccess: false
+    annotations: {}
+      # kubernetes.io/ingress.class: nginx
+      # kubernetes.io/tls-acme: "true"
+    hosts:
+      - host: $INGRESS_HOSTNAME #override with default via pipeline
+        paths: [/]
+    tlsEnabled: false
+    tls:
+    - secretName: INGRESS_TLS_SECRET #override with default via pipeline
+      hosts:
+        - $INGRESS_HOSTNAME #override with default via pipeline
+
+  mongodb:
+    enabled: false
+    resources:
+      limits:
+        cpu: 100m
+        memory: 1Gi
+      requests:
+        cpu: 100m
+        memory: 256Mi
+    # Necessary because no default storageclass is predefined
+    global:
+      storageClass: shared
+    useStatefulSet: true
+    # Authentication configuration
+    auth: 
+      # Enable Authentication
+      enabled: true
+      username: mongodb #mandatory if database is set
+      password: mongodb 
+      database: mongoDB
+      # existingSecret: (keys: mongodb-password, mongodb-root-password, mongodb-replica-set-key)
+
+  # (beta) Enables a envoy proxy as sidecar get additional metrics, should not be enabled atm
+  monitoring:
+    enabled: false
+
+  nodeSelector: {}
+
+  podSecurityContext: {}
+    # fsGroup: 2000
+
+  # Subchart configuration for upstream postgres chart from bitnami
+  postgresql:
+    enabled: false
+    resources:
+      limits:
+        cpu: 100m
+        memory: 1Gi
+      requests:
+        cpu: 100m
+        memory: 256Mi
+    # Necessary because no default storageclass is predefined
+    global:
+      storageClass: shared
+    postgresqlUsername: postgres      # Default
+    postgresqlPassword: postgres
+    postgresqlDatabase: postgresDB
+    #existingSecret:   #used for postgres-password, (key: postgresql-password)
+
+  # Enable only if this path and health probes are provided
+  probe:
+    enabled: false
+    liveness:
+      httpGet:
+      path: /
+      port: http
+    readiness:
+      httpGet:
+      path: /
+      port: http
+
+  replicaCount: 1
+
+  resources:
+    limits:
+      cpu: 100m
+      memory: 512Mi
+    requests:
+      cpu: 100m
+      memory: 256Mi
+
+  securityContext: {}
+    # capabilities:
+    #   drop:
+    #   - ALL
+    # readOnlyRootFilesystem: true
+    # runAsNonRoot: true
+    # runAsUser: 1000
+
+  service:
+    type: ClusterIP
+    port: 80
+
+  serviceAccount:
+    # Specifies whether a service account should be created
+    create: false
+    # The name of the service account to use.
+    # If not set and create is true, a name is generated using the fullname template
+    name:
+
+  tolerations: []
