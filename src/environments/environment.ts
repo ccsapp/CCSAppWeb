@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  API_URL: 'https://3f3fac49-0c17-4ee4-ab21-6bbf937d6a76.mock.pstmn.io',
+  API_URL: 'dev.api.url',
   FLEET_ID: 'xk48jpgz',
 };
 
