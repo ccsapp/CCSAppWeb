@@ -1,12 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { FleetOverviewComponent } from './dashboard/components/fleet-overview/fleet-overview.component';
 
 const routes: Routes = [
-  {
-    path: '',
-    loadChildren: () =>
-      import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
-  },
+  { path: '', component: FleetOverviewComponent },
+  { path: 'overview', component: FleetOverviewComponent },
 ];
 
 @NgModule({
