@@ -1,5 +1,7 @@
-<div class="grid grid-cols-3 justify-items-center">
-  <p class="text-3xl p-2 text-white col-start-2">Fleet Overview</p>
+<div class="grid grid-cols-3 sm:justify-items-center">
+  <p class="text-3xl p-2 text-white col-span-2 sm:col-start-2 sm:col-span-1">
+    Fleet Overview
+  </p>
   <button
     class="bg-primary rounded-lg justify-self-end m-2 mr-5 flex items-center"
   >
@@ -15,25 +17,33 @@
 <div class="h-1 bg-primary"></div>
 <div
   *ngIf="fleetData$ | async as fleetData"
-  class="bg-foreground m-6 rounded-lg"
+  class="m-2 sm:m-4 bg-foreground rounded-lg"
 >
-  <table class="p-4 border-collapse table-auto w-full text-white text-left">
+  <table
+    class="border-collapse table-auto w-full text-white text-sm sm:text-base text-left"
+  >
     <thead>
       <tr>
-        <th class="p-4 pb-2 font-heading font-medium text-xl">VIN</th>
-        <th class="p-4 pb-2 font-heading font-medium text-xl">Brand</th>
-        <th class="p-4 pb-2 font-heading font-medium text-xl">Model</th>
-        <th class="p-4 pb-2 font-heading font-medium text-xl">
+        <th class="p-2 sm:p-4 sm:pb-2 font-heading font-medium text-xl">VIN</th>
+        <th class="p-2 sm:p-4 sm:pb-2 font-heading font-medium text-xl">
+          Brand
+        </th>
+        <th
+          class="p-2 sm:p-4 sm:pb-2 font-heading font-medium text-xl hidden sm:block"
+        >
+          Model
+        </th>
+        <th class="p-2 sm:p-4 sm:pb-2 font-heading font-medium text-xl">
           Production Date
         </th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let car of fleetData" class="border-t border-secondary">
-        <td class="p-4 pb-2">{{ car.vin }}</td>
-        <td class="p-4 pb-2">{{ car.brand }}</td>
-        <td class="p-4 pb-2">{{ car.model }}</td>
-        <td class="p-4 pb-2">{{ car.productionDate }}</td>
+        <td class="p-2 sm:p-4 sm:pb-2">{{ car.vin }}</td>
+        <td class="p-2 sm:p-4 sm:pb-2">{{ car.brand }}</td>
+        <td class="p-2 sm:p-4 sm:pb-2 hidden sm:block">{{ car.model }}</td>
+        <td class="p-2 sm:p-4 sm:pb-2">{{ car.productionDate }}</td>
       </tr>
     </tbody>
   </table>
