@@ -28,22 +28,35 @@
         <th class="p-2 sm:p-4 sm:pb-2 font-heading font-medium text-xl">
           Brand
         </th>
+        <th class="p-2 sm:p-4 sm:pb-2 font-heading font-medium text-xl">
+          Model
+        </th>
         <th
           class="p-2 sm:p-4 sm:pb-2 font-heading font-medium text-xl hidden sm:block"
         >
-          Model
-        </th>
-        <th class="p-2 sm:p-4 sm:pb-2 font-heading font-medium text-xl">
           Production Date
         </th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let car of fleetData" class="border-t border-secondary">
         <td class="p-2 sm:p-4 sm:pb-2">{{ car.vin }}</td>
         <td class="p-2 sm:p-4 sm:pb-2">{{ car.brand }}</td>
-        <td class="p-2 sm:p-4 sm:pb-2 hidden sm:block">{{ car.model }}</td>
-        <td class="p-2 sm:p-4 sm:pb-2">{{ car.productionDate }}</td>
+        <td class="p-2 sm:p-4 sm:pb-2">{{ car.model }}</td>
+        <td class="p-2 sm:p-4 sm:pb-2 hidden sm:block">
+          {{ car.productionDate }}
+        </td>
+        <td class="p-2 sm:pt-4 sm:pb-2">
+          <div class="sm:pr-2 flex justify-end">
+            <button class="p-1 bg-warning rounded-lg flex items-center">
+              <img src="assets/icons/trash.svg" style="height: 20px" /><span
+                class="text-black hidden sm:block"
+                >Delete</span
+              >
+            </button>
+          </div>
+        </td>
       </tr>
     </tbody>
   </table>
