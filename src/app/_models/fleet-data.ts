@@ -29,7 +29,7 @@ interface DynamicData {
   position: Position;
   trunkLockState: 'LOCKED' | 'UNLOCKED';
   doorsLockState: 'LOCKED' | 'UNLOCKED';
-  engingeState: 'ON' | 'OFF';
+  engineState: 'ON' | 'OFF';
 }
 
 interface Position {
