@@ -4,6 +4,7 @@
   </p>
   <button
     class="bg-primary rounded-lg justify-self-end m-2 mr-5 flex items-center"
+    (click)="addCar.openModal()"
   >
     <span
       class="material-symbols-outlined"
@@ -44,12 +45,15 @@
         <td class="p-2 sm:p-4 sm:pb-2">{{ car.vin }}</td>
         <td class="p-2 sm:p-4 sm:pb-2">{{ car.brand }}</td>
         <td class="p-2 sm:p-4 sm:pb-2">{{ car.model }}</td>
-        <td class="p-2 sm:p-4 sm:pb-2 hidden sm:block">
+        <td class="p-2 sm:p-4 sm:pb-2 max-[640]:hidden">
           {{ car.productionDate }}
         </td>
         <td class="p-2 sm:pt-4 sm:pb-2">
           <div class="sm:pr-2 flex justify-end">
-            <button class="p-1 bg-warning rounded-lg flex items-center">
+            <button
+              (click)="removeCar.openModal(car.vin)"
+              class="p-1 bg-warning rounded-lg flex items-center"
+            >
               <img src="assets/icons/trash.svg" style="height: 20px" /><span
                 class="text-black hidden sm:block"
                 >Delete</span
@@ -61,3 +65,9 @@
     </tbody>
   </table>
 </div>
+
+<app-remove-car-modal #removeCar></app-remove-car-modal>
+<app-add-car-modal #addCar></app-add-car-modal>
+
+<!-- if error messages are wanted for the whole app move this into app component -->
+<app-error-message-modal></app-error-message-modal>

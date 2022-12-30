@@ -1,0 +1,25 @@
+<div
+  *ngIf="errorMessage$ | async as errorMessage"
+  class="absolute w-screen h-screen top-0 left-0 flex items-center justify-center"
+>
+  <div
+    (click)="closeModal()"
+    class="absolute w-screen h-screen bg-black opacity-60 z-40"
+  ></div>
+  <div class="w-fit bg-modalbg text-white m-5 rounded-lg z-50">
+    <div class="sm:w-[28rem] flex flex-1 flex-col m-5 space-y-6">
+      <div class="flex flex-row gap-2">
+        <img src="assets/attention.svg" class="h-full" />
+        <p class="text-white text-xl">
+          {{ errorMessage }}
+        </p>
+      </div>
+      <button
+        (click)="closeModal()"
+        class="self-end bg-primary py-1 w-24 sm:w-32 rounded-lg shadow-md shadow-gray-800"
+      >
+        Ok
+      </button>
+    </div>
+  </div>
+</div>

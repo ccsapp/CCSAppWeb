@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, switchMap } from 'rxjs';
 import { FleetDataService } from 'src/app/services/fleet-data.service';
 import { Car } from 'src/app/_models/fleet-data';
 
@@ -10,10 +10,15 @@ import { Car } from 'src/app/_models/fleet-data';
 })
 export class FleetOverviewComponent implements OnInit {
   fleetData$!: Observable<Car[]>;
+  dataChanged$ = this.fleetDataService.dataChanged;
 
-  constructor(private fleetDataService: FleetDataService) {}
+  constructor(
+    private fleetDataService: FleetDataService,
+  ) {}
 
   ngOnInit(): void {
-    this.fleetData$ = this.fleetDataService.getCars();
+    this.fleetData$ = this.dataChanged$.pipe(
+      switchMap(() => this.fleetDataService.getCars())
+    );
   }
 }
