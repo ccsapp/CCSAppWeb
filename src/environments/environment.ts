@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  API_URL: 'dev.api.url',
+  API_URL: 'https://cm-p-fleetm.cloud.iai.kit.edu',
   FLEET_ID: 'xk48jpgz',
 };
 

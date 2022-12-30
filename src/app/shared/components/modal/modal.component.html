@@ -1,0 +1,12 @@
+<div
+  *ngIf="display$ | async"
+  class="absolute w-screen h-screen top-0 left-0 flex items-center justify-center"
+>
+  <div
+    (click)="closeModal()"
+    class="absolute w-screen h-screen bg-black opacity-60 z-40"
+  ></div>
+  <div class="w-fit bg-modalbg text-white m-5 rounded-lg z-50">
+    <ng-content></ng-content>
+  </div>
+</div>
