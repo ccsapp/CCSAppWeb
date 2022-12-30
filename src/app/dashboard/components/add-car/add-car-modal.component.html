@@ -1,0 +1,49 @@
+<app-modal [modalId]="modalId">
+  <form
+    class="sm:w-[28rem] flex flex-1 flex-col m-5 space-y-6"
+    (ngSubmit)="onSubmit()"
+  >
+    <p class="text-2xl self-center">Add Car to Fleet</p>
+    <div class="flex flex-1 flex-col space-y-1">
+      <label class="text-md" for="vinToAdd">VIN:</label>
+      <div class="relative flex items-center justify-end">
+        <img
+          *ngIf="errorMessage"
+          src="assets/attention.svg"
+          class="h-full py-0.5 pr-2 absolute"
+        />
+        <!-- TODO check regex pattern -->
+        <input
+          id="vinToAdd"
+          name="vin"
+          [disabled]="loading"
+          [(ngModel)]="vinToAdd"
+          required
+          class="p-1 rounded-lg shadow-md shadow-gray-800 text-modalbg w-full"
+          type="text"
+          placeholder="WDD1690071J236589"
+        />
+      </div>
+      <p *ngIf="errorMessage" class="text-sm text-warning">
+        {{ errorMessage }}
+      </p>
+    </div>
+    <div class="flex flex-row justify-between">
+      <button
+        type="button"
+        [disabled]="loading"
+        (click)="closeModal()"
+        class="bg-modalsecondary py-1 w-24 sm:w-32 rounded-lg shadow-md shadow-gray-800"
+      >
+        Cancel
+      </button>
+      <button
+        type="submit"
+        class="col-start-3 bg-primary py-1 w-24 sm:w-32 rounded-lg shadow-md shadow-gray-800"
+        [disabled]="loading"
+      >
+        Add
+      </button>
+    </div>
+  </form>
+</app-modal>
