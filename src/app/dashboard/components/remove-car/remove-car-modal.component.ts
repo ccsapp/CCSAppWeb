@@ -1,4 +1,4 @@
-import { HttpErrorResponse } from '@angular/common/http';
+import { HttpErrorResponse, HttpStatusCode } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FleetDataService } from 'src/app/services/fleet-data.service';
 import { ModalService } from 'src/app/services/modal.service';
@@ -46,7 +46,15 @@ export class RemoveCarModalComponent implements OnInit {
       },
       error: (err: HttpErrorResponse) => {
         this.loading = false;
-        this.errorMessage = err.message;
+        if (err?.status == HttpStatusCode.NotFound) {
+          this.modalService.updateErrorMessage(
+            'Error deleting car. Car does not exist.'
+          );
+          this.closeModal();
+          return;
+        }
+        console.log(err?.error?.message);
+        this.errorMessage = 'Communication with the server failed.';
       },
     });
   }
