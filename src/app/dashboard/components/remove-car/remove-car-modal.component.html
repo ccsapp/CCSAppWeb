@@ -4,8 +4,7 @@
       <p class="text-2xl self-center text-center">
         <img
           class="absolute h-full -translate-x-[120%] p-0.5"
-          src="assets/attention.svg"
-        />
+          src="assets/attention.svg" />
         Remove Car from Fleet
       </p>
     </div>
@@ -20,15 +19,13 @@
       <button
         (click)="closeModal()"
         [disabled]="loading"
-        class="bg-modalsecondary py-1 w-24 sm:w-32 rounded-lg shadow-md shadow-gray-800"
-      >
+        class="bg-modalsecondary py-1 w-24 sm:w-32 rounded-lg shadow-md shadow-gray-800">
         Cancel
       </button>
       <button
         (click)="remove()"
         class="bg-primary py-1 w-24 sm:w-32 rounded-lg shadow-md shadow-gray-800"
-        [disabled]="loading"
-      >
+        [disabled]="loading">
         Remove
       </button>
     </div>

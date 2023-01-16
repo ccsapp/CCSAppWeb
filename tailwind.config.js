@@ -1,8 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    "./src/**/*.{html,ts}",
-  ],
+  content: ["./src/**/*.{html,ts}"],
   theme: {
     extend: {
       colors: {
@@ -15,10 +13,10 @@ module.exports = {
         modalsecondary: "#34363D",
       },
       fontFamily: {
-        heading: ['Roboto Condensed', 'Helvetica', 'sans-serif'],
-        body: ['Roboto' , 'Helvetica', 'sans-serif']
-      }
+        heading: ["Roboto Condensed", "Helvetica", "sans-serif"],
+        body: ["Roboto", "Helvetica", "sans-serif"],
+      },
     },
   },
   plugins: [],
-}
+};
