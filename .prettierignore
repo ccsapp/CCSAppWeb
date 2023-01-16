@@ -1,0 +1,8 @@
+#igonore files that do not need or should not be formatted
+
+.angular
+.vscode
+dist
+figures
+helm
+.gitlab-ci.yml

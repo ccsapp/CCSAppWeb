@@ -4,12 +4,10 @@
   </p>
   <button
     class="bg-primary rounded-lg justify-self-end m-2 mr-5 flex items-center"
-    (click)="addCar.openModal()"
-  >
+    (click)="addCar.openModal()">
     <span
       class="material-symbols-outlined"
-      style="color: white; font-size: 2rem; vertical-align: middle"
-    >
+      style="color: white; font-size: 2rem; vertical-align: middle">
       add
     </span>
     <p class="text-white p-2">Add</p>
@@ -18,11 +16,9 @@
 <div class="h-1 bg-primary"></div>
 <div
   *ngIf="fleetData$ | async as fleetData"
-  class="m-2 sm:m-4 bg-foreground rounded-lg"
->
+  class="m-2 sm:m-4 bg-foreground rounded-lg">
   <table
-    class="border-collapse table-auto w-full text-white text-sm sm:text-base text-left"
-  >
+    class="border-collapse table-auto w-full text-white text-sm sm:text-base text-left">
     <thead>
       <tr>
         <th class="p-2 sm:p-4 sm:pb-2 font-heading font-medium text-xl">VIN</th>
@@ -33,8 +29,7 @@
           Model
         </th>
         <th
-          class="p-2 sm:p-4 sm:pb-2 font-heading font-medium text-xl hidden sm:block"
-        >
+          class="p-2 sm:p-4 sm:pb-2 font-heading font-medium text-xl hidden sm:block">
           Production Date
         </th>
         <th></th>
@@ -52,8 +47,7 @@
           <div class="sm:pr-2 flex justify-end">
             <button
               (click)="removeCar.openModal(car.vin)"
-              class="p-1 bg-warning rounded-lg flex items-center"
-            >
+              class="p-1 bg-warning rounded-lg flex items-center">
               <img src="assets/icons/trash.svg" style="height: 20px" /><span
                 class="text-black hidden sm:block"
                 >Delete</span

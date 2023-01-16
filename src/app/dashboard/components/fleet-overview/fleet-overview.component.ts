@@ -12,9 +12,7 @@ export class FleetOverviewComponent implements OnInit {
   fleetData$!: Observable<Car[]>;
   dataChanged$ = this.fleetDataService.dataChanged;
 
-  constructor(
-    private fleetDataService: FleetDataService,
-  ) {}
+  constructor(private fleetDataService: FleetDataService) {}
 
   ngOnInit(): void {
     this.fleetData$ = this.dataChanged$.pipe(
