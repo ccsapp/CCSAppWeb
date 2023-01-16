@@ -1,7 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AddCarModalComponent } from './add-car-modal.component';
 
-
 describe('ModalAddCarComponent', () => {
   let component: AddCarModalComponent;
   let fixture: ComponentFixture<AddCarModalComponent>;

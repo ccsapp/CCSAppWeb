@@ -1,7 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { FleetDataService } from './fleet-data.service';
 
-
 describe('FleetDataService', () => {
   let service: FleetDataService;
 
