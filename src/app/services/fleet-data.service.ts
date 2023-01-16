@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, tap } from 'rxjs';
+import { BehaviorSubject, catchError, tap } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { Car, DetailedCar } from '../_models/fleet-data';
 
@@ -41,10 +41,19 @@ export class FleetDataService {
   }
 
   removeCar(vin: string) {
-    return this.http
-      .delete<null>(`${this.API_URL}/fleets/${this.FLEET_ID}/cars/${vin}`, {
-        observe: 'response',
-      })
-      .pipe(tap(() => this.dataChanged$.next(null)));
+    return (
+      this.http
+        .delete<null>(`${this.API_URL}/fleets/${this.FLEET_ID}/cars/${vin}`, {
+          observe: 'response',
+        })
+        // trigger a data update regardless if the request was successful
+        .pipe(
+          tap(() => this.dataChanged$.next(null)),
+          catchError((err) => {
+            this.dataChanged$.next(null);
+            throw err;
+          })
+        )
+    );
   }
 }
