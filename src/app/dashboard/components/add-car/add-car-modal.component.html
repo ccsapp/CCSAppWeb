@@ -1,31 +1,36 @@
 <app-modal [modalId]="modalId">
-  <form
-    class="sm:w-[28rem] flex flex-1 flex-col m-5 space-y-6"
-    (ngSubmit)="onSubmit()"
-  >
+  <div class="sm:w-[28rem] flex flex-1 flex-col m-5 space-y-6">
     <p class="text-2xl self-center">Add Car to Fleet</p>
     <div class="flex flex-1 flex-col space-y-1">
-      <label class="text-md" for="vinToAdd">VIN:</label>
+      <label class="text-md" for="vinInput">VIN:</label>
       <div class="relative flex items-center justify-end">
         <img
-          *ngIf="errorMessage"
+          *ngIf="errorMessage && !vinInput.dirty"
           src="assets/attention.svg"
           class="h-full py-0.5 pr-2 absolute"
         />
-        <!-- TODO check regex pattern -->
         <input
-          id="vinToAdd"
-          name="vin"
-          [disabled]="loading"
-          [(ngModel)]="vinToAdd"
+          id="vinInput"
+          ngModel
+          #vinField
+          [formControl]="vinInput"
+          (keydown.enter)="onSubmit()"
           required
-          class="p-1 rounded-lg shadow-md shadow-gray-800 text-modalbg w-full"
+          pattern="[A-HJ-NPR-Z0-9]{13}[0-9]{4}"
+          class="p-1 rounded-lg shadow-md shadow-gray-800 text-modalbg w-full form-control"
           type="text"
           placeholder="WDD1690071J236589"
         />
       </div>
-      <p *ngIf="errorMessage" class="text-sm text-warning">
+
+      <p *ngIf="errorMessage && !vinInput.dirty" class="text-sm text-warning">
         {{ errorMessage }}
+      </p>
+      <p
+        *ngIf="vinInput.invalid && vinInput.touched"
+        class="text-sm text-warning"
+      >
+        Please provide a valid VIN.
       </p>
     </div>
     <div class="flex flex-row justify-between">
@@ -37,13 +42,15 @@
       >
         Cancel
       </button>
+      <!-- after a click on "Add", if 'vinInput' is valid submit is called otherwise 'vinField' is focused -->
       <button
-        type="submit"
+        type="button"
         class="col-start-3 bg-primary py-1 w-24 sm:w-32 rounded-lg shadow-md shadow-gray-800"
         [disabled]="loading"
+        (click)="onSubmit()"
       >
         Add
       </button>
     </div>
-  </form>
+  </div>
 </app-modal>
