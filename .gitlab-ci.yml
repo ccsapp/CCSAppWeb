@@ -14,3 +14,12 @@ include:
   - project: cm-tm/cm-team/pipelineartifacts/pipeline
     ref: "1"
     file : website.yaml
+
+prettier:
+  stage: test
+  image: node:19
+  script:
+    # Caching is broken in our current GitLab CI runner configuration, so we need to install the node dependencies
+    # ourselves (even though we only need prettier in the correct version).
+    - npm ci
+    - npm run prettier:check

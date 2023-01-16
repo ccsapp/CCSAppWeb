@@ -1,29 +1,42 @@
-# UICCSAppWeb
+# CCSAppWebVP
 
-## Design
-[Architecture](./pages/architecture.md)
+CCSAppWebVP realizes the presentation layer of the CCSApp. The architecture and design of the app can be found [here](https://git.scc.kit.edu/cm-tm/cm-team/projectwork/pse/0-doc-ccs-app-v-2).
 
-## Implementation and Tests
+> **Important**: CCSAppWebVP depends on the FleetManagement microservice to run. Therefore, you need to specify `API_URL` in your environment.
 
-[OIDC Configuration](./pages/authentication.md)
+## Code Style
 
-[Local Installation](./pages/installation.md)
+For code formatting, prettier is used. To format, run in the root directory:
 
-[Tests (Karma)](./pages/tests.md)
+```bash
+npm run prettier:format
+```
 
+To check whether all files are formatted run:
 
+```bash
+npm run prettier:check
+```
 
-## Angular
+Any files that should not be formatted must be added to the [prettier ignore](./.prettierignore).
+
+The code style is checked by the CI pipeline. If the code style is not correct, the pipeline will fail.
+
+## Local Setup
+
+Run `ng serve` to start a development server. A local webserver will be deployed to `http://localhost:4200/` . The application will automatically reload if you change any of the source files.
+
+The [local environment](/src/environments/environment.ts) sets the resource URL for the FleetManagement application microservice and the `fleetId` . If you want to use your local server, replace the `API_URL` .
+
+---
+
+## Remarks from the devs of Angular:
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.0.5.
 
-### Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
-
 ### Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module` .
 
 ### Build
 
@@ -32,10 +45,6 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 ### Running unit tests
 
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-### Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
 
 ### Further help
 

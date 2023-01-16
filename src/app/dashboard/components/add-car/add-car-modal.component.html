@@ -7,8 +7,7 @@
         <img
           *ngIf="errorMessage && !vinInput.dirty"
           src="assets/attention.svg"
-          class="h-full py-0.5 pr-2 absolute"
-        />
+          class="h-full py-0.5 pr-2 absolute" />
         <input
           id="vinInput"
           ngModel
@@ -19,8 +18,7 @@
           pattern="[A-HJ-NPR-Z0-9]{13}[0-9]{4}"
           class="p-1 rounded-lg shadow-md shadow-gray-800 text-modalbg w-full form-control"
           type="text"
-          placeholder="WDD1690071J236589"
-        />
+          placeholder="WDD1690071J236589" />
       </div>
 
       <p *ngIf="errorMessage && !vinInput.dirty" class="text-sm text-warning">
@@ -28,8 +26,7 @@
       </p>
       <p
         *ngIf="vinInput.invalid && vinInput.touched"
-        class="text-sm text-warning"
-      >
+        class="text-sm text-warning">
         Please provide a valid VIN.
       </p>
     </div>
@@ -38,8 +35,7 @@
         type="button"
         [disabled]="loading"
         (click)="closeModal()"
-        class="bg-modalsecondary py-1 w-24 sm:w-32 rounded-lg shadow-md shadow-gray-800"
-      >
+        class="bg-modalsecondary py-1 w-24 sm:w-32 rounded-lg shadow-md shadow-gray-800">
         Cancel
       </button>
       <!-- after a click on "Add", if 'vinInput' is valid submit is called otherwise 'vinField' is focused -->
@@ -47,8 +43,7 @@
         type="button"
         class="col-start-3 bg-primary py-1 w-24 sm:w-32 rounded-lg shadow-md shadow-gray-800"
         [disabled]="loading"
-        (click)="onSubmit()"
-      >
+        (click)="onSubmit()">
         Add
       </button>
     </div>
