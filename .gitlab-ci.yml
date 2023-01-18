@@ -1,18 +1,18 @@
 include:
   - project: cm-tm/cm-team/pipelineartifacts/pipeline
-    ref: "1"
+    ref: "PSE"
     file : base.yaml
   - project: cm-tm/cm-team/pipelineartifacts/pipeline
-    ref: "1"
+    ref: "PSE"
     file : image.yaml
   - project: cm-tm/cm-team/pipelineartifacts/pipeline
-    ref: "1"
+    ref: "PSE"
     file : chart.yaml
   - project: cm-tm/cm-team/pipelineartifacts/pipeline
-    ref: "1"
+    ref: "PSE"
     file : deploy.yaml
   - project: cm-tm/cm-team/pipelineartifacts/pipeline
-    ref: "1"
+    ref: "PSE"
     file : website.yaml
 
 prettier:
