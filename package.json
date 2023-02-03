@@ -7,6 +7,7 @@
     "build": "ng build --output-path dist",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
+    "test:ci": "ng test --karma-config karma-ci.conf.js",
     "prettier:check": "prettier --check .",
     "prettier:format": "prettier --write ."
   },
