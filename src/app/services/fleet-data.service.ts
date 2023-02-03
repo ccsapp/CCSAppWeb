@@ -46,7 +46,8 @@ export class FleetDataService {
         .delete<null>(`${this.API_URL}/fleets/${this.FLEET_ID}/cars/${vin}`, {
           observe: 'response',
         })
-        // trigger a data update regardless if the request was successful
+        // trigger a data update regardless if the request was successful because the reason
+        // could be a concurrent remove operation resulting in this request to fail with 404
         .pipe(
           tap(() => this.dataChanged$.next(null)),
           catchError((err) => {

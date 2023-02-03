@@ -15,11 +15,42 @@ include:
     ref: "PSE"
     file : website.yaml
 
+style:
+  needs: []
+
+npmtest:
+  needs: ["npminstall"]
+
 prettier:
   stage: test
   image: node:19
+  needs: ["npminstall"]
+  extends: .npmcache
   script:
-    # Caching is broken in our current GitLab CI runner configuration, so we need to install the node dependencies
-    # ourselves (even though we only need prettier in the correct version).
-    - npm ci
     - npm run prettier:check
+
+npmbuild:
+  needs: ["npminstall"]
+
+image-build:
+  needs: ["npmbuild"]
+
+chart:
+  needs:
+    - job: image-build
+      artifacts: true
+    - job: npmtest
+      artifacts: false
+    - job: prettier
+      artifacts: false
+    - job: style
+
+deploy:
+  needs: ["chart"]
+
+undeploy:
+  needs: ["deploy"]
+
+Logging:
+  needs: ["undeploy"]
+
