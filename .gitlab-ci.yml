@@ -48,8 +48,15 @@ chart:
 deploy:
   needs: ["chart"]
 
+deploy-main:
+  needs: ["chart"]
+
 undeploy:
-  needs: ["deploy"]
+  needs:
+    - job: deploy
+      optional: true
+    - job: deploy-main
+      optional: true
 
 Logging:
   needs: ["undeploy"]
