@@ -7,4 +7,9 @@
 
 body {
   font-family: "Roboto", "Segoe UI", sans-serif;
+  background-image: url(/assets/background.jpg);
+  background-size: cover;
+  background-attachment: fixed;
+  /* set the focal point to the center of the image */
+  background-position: 50%;
 }
