@@ -6,3 +6,4 @@ dist
 figures
 helm
 .gitlab-ci.yml
+coverage
