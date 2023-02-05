@@ -1,0 +1,28 @@
+<div class="flex justify-center">
+  <div *ngIf="backButtonPath$ | async as path; else name" class="flex-1 flex">
+    <a [routerLink]="path">
+      <span
+        class="material-symbols-outlined p-2"
+        style="color: white; font-size: 2.5rem; vertical-align: middle">
+        arrow_back
+      </span>
+    </a>
+  </div>
+  <ng-template #name>
+    <div class="flex-1 flex">
+      <img src="/assets/icons/logo.png" class="h-8 m-2" />
+      <div class="hidden md:block text-white text-3xl pt-2">CCSApp</div>
+    </div>
+  </ng-template>
+  <div class="flex">
+    <div *ngIf="titleIconPath$ | async as path">
+      <img [src]="path" class="h-8 m-2" />
+    </div>
+    <div *ngIf="title$ | async as title" class="text-white text-3xl p-2">
+      {{ title }}
+    </div>
+  </div>
+  <!-- this pseudo element is responsible for centering the title -->
+  <div class="flex-1"></div>
+</div>
+<div class="h-1 bg-primary"></div>
