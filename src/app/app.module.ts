@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { DashboardModule } from './dashboard/dashboard.module';
+import { FleetManagerDashboardModule } from './fleet-manager-dashboard/fleet-manager-dashboard.module';
 import { SharedModule } from './shared/shared.module';
 
 @NgModule({
@@ -12,7 +12,7 @@ import { SharedModule } from './shared/shared.module';
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    DashboardModule,
+    FleetManagerDashboardModule,
     SharedModule,
   ],
   providers: [],
