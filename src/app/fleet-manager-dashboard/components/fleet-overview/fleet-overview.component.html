@@ -1,0 +1,17 @@
+<app-add-car-card class="sm:m-8 my-4 m-2 flex justify-center">
+</app-add-car-card>
+
+<div class="flex justify-center">
+  <div
+    *ngIf="fleetData$ | async as fleetData"
+    class="grid md:grid-cols-2 grid-cols-1 gap-4 max-w-5xl">
+    <div *ngFor="let car of fleetData" class="">
+      <app-car-overview-card [car]="car"></app-car-overview-card>
+    </div>
+  </div>
+</div>
+
+<app-remove-car-modal #removeCar></app-remove-car-modal>
+
+<!-- if error messages are wanted for the whole app move this into app component -->
+<app-error-message-modal></app-error-message-modal>
