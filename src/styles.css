@@ -6,6 +6,7 @@
 @tailwind utilities;
 
 body {
+  background-color: #513a8c;
   font-family: "Roboto", "Segoe UI", sans-serif;
   background-image: url(/assets/background.jpg);
   background-size: cover;
