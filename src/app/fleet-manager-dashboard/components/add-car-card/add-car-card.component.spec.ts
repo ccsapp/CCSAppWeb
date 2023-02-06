@@ -1,21 +1,23 @@
 import { HttpClient } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { AddCarModalComponent } from './add-car-modal.component';
+import { AddCarCardComponent } from './add-car-card.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
-describe('ModalAddCarComponent', () => {
-  let component: AddCarModalComponent;
-  let fixture: ComponentFixture<AddCarModalComponent>;
+describe('AddCarCardComponent', () => {
+  let component: AddCarCardComponent;
+  let fixture: ComponentFixture<AddCarCardComponent>;
   let httpClientSpy: jasmine.SpyObj<HttpClient>;
 
   beforeEach(async () => {
     const hcSpy = jasmine.createSpyObj('HttpClient', ['get', 'put', 'delete']);
 
     await TestBed.configureTestingModule({
-      declarations: [AddCarModalComponent],
+      imports: [ReactiveFormsModule],
+      declarations: [AddCarCardComponent],
       providers: [{ provide: HttpClient, useValue: hcSpy }],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(AddCarModalComponent);
+    fixture = TestBed.createComponent(AddCarCardComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
     httpClientSpy = TestBed.inject(HttpClient) as jasmine.SpyObj<HttpClient>;

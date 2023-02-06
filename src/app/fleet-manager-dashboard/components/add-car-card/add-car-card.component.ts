@@ -3,47 +3,27 @@ import {
   HttpResponse,
   HttpStatusCode,
 } from '@angular/common/http';
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { FleetDataService } from 'src/app/services/fleet-data.service';
-import { ModalService } from 'src/app/services/modal.service';
 
 @Component({
-  selector: 'app-add-car-modal',
-  templateUrl: './add-car-modal.component.html',
-  styleUrls: ['./add-car-modal.component.css'],
+  selector: 'app-add-car-card',
+  templateUrl: './add-car-card.component.html',
+  styleUrls: ['./add-car-card.component.css'],
 })
-export class AddCarModalComponent implements OnInit {
+export class AddCarCardComponent {
   @ViewChild('vinField') vinField!: ElementRef;
   vinInput = new FormControl('');
 
-  modalId = 'add-car-modal';
   errorMessage?: string;
   loading = false;
+  submitted = false;
 
-  constructor(
-    private fleetDataService: FleetDataService,
-    private modalService: ModalService
-  ) {}
-
-  ngOnInit(): void {
-    this.modalService.watch(this.modalId).subscribe((isOpen) => {
-      if (!isOpen) {
-        this.vinInput.reset();
-        this.errorMessage = undefined;
-      }
-    });
-  }
-
-  openModal() {
-    this.modalService.open(this.modalId);
-  }
-
-  closeModal() {
-    this.modalService.close(this.modalId);
-  }
+  constructor(private fleetData: FleetDataService) {}
 
   onSubmit() {
+    this.submitted = true;
     // prevent submitting a syntactically invalid VIN or a VIN that was rejected by the backend immediately before
     // (without changing vinField in the meantime)
     if (this.vinInput.valid && this.vinInput.dirty) {
@@ -54,21 +34,22 @@ export class AddCarModalComponent implements OnInit {
   }
 
   addCar(vin: string) {
+    //syntax validation is handled by the template
     // mark as not dirty
     this.vinInput.markAsPristine();
 
-    //syntax validation is handled by the template
     this.loading = true;
-    this.fleetDataService.addCar(vin).subscribe({
+    this.errorMessage = undefined;
+
+    this.fleetData.addCar(vin).subscribe({
       next: (res: HttpResponse<null>) => {
         this.loading = false;
         if (res?.status == HttpStatusCode.NoContent) {
-          this.modalService.updateErrorMessage(
-            `The car with VIN "${vin}" already belongs to the fleet.`
-          );
+          this.errorMessage = 'This car already belongs to the fleet.';
+          return;
         }
-        this.errorMessage = undefined;
-        this.closeModal();
+        this.submitted = false;
+        this.vinInput.reset();
       },
       error: (err: HttpErrorResponse) => {
         this.loading = false;

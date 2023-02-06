@@ -1,0 +1,40 @@
+<div
+  class="flex bg-background bg-opacity-50 justify-between rounded-lg items-center px-2 sm:px-4 py-4">
+  <div class="flex gap-2 items-center">
+    <div>
+      <img class="w-8 md:w-12" [src]="path" />
+    </div>
+    <div>
+      <div class="text-white md:text-2xl">{{ car.brand }}, {{ car.model }}</div>
+      <div class="text-white text-xs">
+        <span
+          class="material-symbols-outlined"
+          style="color: white; font-size: 1rem; vertical-align: text-bottom">
+          tag
+        </span>
+        <span class="-mx-0.5">
+          {{ car.vin }}
+        </span>
+        <span
+          class="pl-2 material-symbols-outlined"
+          style="color: white; font-size: 1rem; vertical-align: text-bottom">
+          factory
+        </span>
+        {{ car.productionDate | date : "dd.MM.yyyy" }}
+      </div>
+    </div>
+  </div>
+
+  <div class="flex nowrap pl-4">
+    <span
+      class="material-symbols-outlined"
+      style="color: white; font-size: 1.75rem; vertical-align: middle">
+      delete
+    </span>
+    <span
+      class="material-symbols-outlined"
+      style="color: white; font-size: 1.75rem; vertical-align: middle">
+      info
+    </span>
+  </div>
+</div>
