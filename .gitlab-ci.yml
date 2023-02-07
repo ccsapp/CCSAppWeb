@@ -15,49 +15,12 @@ include:
     ref: "PSE"
     file : website.yaml
 
-style:
-  needs: []
-
-npmtest:
-  needs: ["npminstall"]
+# using a parallel DAG pipeline (https://docs.gitlab.com/ee/ci/directed_acyclic_graph/) would be significantly (~ 30 %) faster but is not possible
+# at the moment because of limited CI/CD resources
 
 prettier:
-  stage: test
+  stage: prepare
   image: node:19
-  needs: ["npminstall"]
   extends: .npmcache
   script:
     - npm run prettier:check
-
-npmbuild:
-  needs: ["npminstall"]
-
-image-build:
-  needs: ["npmbuild"]
-
-chart:
-  needs:
-    - job: image-build
-      artifacts: true
-    - job: npmtest
-      artifacts: false
-    - job: prettier
-      artifacts: false
-    - job: style
-
-deploy:
-  needs: ["chart"]
-
-deploy-main:
-  needs: ["chart"]
-
-undeploy:
-  needs:
-    - job: deploy
-      optional: true
-    - job: deploy-main
-      optional: true
-
-Logging:
-  needs: ["undeploy"]
-
