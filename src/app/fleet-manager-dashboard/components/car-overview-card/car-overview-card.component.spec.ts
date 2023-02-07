@@ -1,18 +1,29 @@
 import { HttpClient } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { TestScheduler } from 'rxjs/testing';
+import { SCHEDULER } from 'src/app/util';
 
 import { CarOverviewCardComponent } from './car-overview-card.component';
 
 describe('CarOverviewCardComponent', () => {
+  let testScheduler: TestScheduler;
+
   let component: CarOverviewCardComponent;
   let fixture: ComponentFixture<CarOverviewCardComponent>;
   let httpClientSpy: jasmine.SpyObj<HttpClient>;
 
   beforeEach(async () => {
+    testScheduler = new TestScheduler((actual, expected) =>
+      expect(actual).toEqual(expected)
+    );
+
     const hcSpy = jasmine.createSpyObj('HttpClient', ['get', 'put', 'delete']);
     await TestBed.configureTestingModule({
       declarations: [CarOverviewCardComponent],
-      providers: [{ provide: HttpClient, useValue: hcSpy }],
+      providers: [
+        { provide: HttpClient, useValue: hcSpy },
+        { provide: SCHEDULER, useValue: testScheduler },
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(CarOverviewCardComponent);

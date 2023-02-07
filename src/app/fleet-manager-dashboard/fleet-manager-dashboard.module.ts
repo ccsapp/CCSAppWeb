@@ -6,12 +6,10 @@ import { SharedModule } from '../shared/shared.module';
 import { AddCarCardComponent } from './components/add-car-card/add-car-card.component';
 import { CarOverviewCardComponent } from './components/car-overview-card/car-overview-card.component';
 import { FleetOverviewComponent } from './components/fleet-overview/fleet-overview.component';
-import { RemoveCarModalComponent } from './components/remove-car/remove-car-modal.component';
 
 @NgModule({
   declarations: [
     FleetOverviewComponent,
-    RemoveCarModalComponent,
     AddCarCardComponent,
     CarOverviewCardComponent,
     DynamicDataCardComponent,

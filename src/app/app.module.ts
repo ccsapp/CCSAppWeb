@@ -1,10 +1,12 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { asyncScheduler } from 'rxjs';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FleetManagerDashboardModule } from './fleet-manager-dashboard/fleet-manager-dashboard.module';
 import { SharedModule } from './shared/shared.module';
+import { SCHEDULER } from './util';
 
 @NgModule({
   declarations: [AppComponent],
@@ -15,7 +17,7 @@ import { SharedModule } from './shared/shared.module';
     FleetManagerDashboardModule,
     SharedModule,
   ],
-  providers: [],
+  providers: [{ provide: SCHEDULER, useValue: asyncScheduler }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
