@@ -24,16 +24,12 @@
     </div>
   </div>
 
-  <div class="flex nowrap pl-4">
-    <span
-      class="material-symbols-outlined"
-      style="color: white; font-size: 1.75rem; vertical-align: middle">
-      delete
-    </span>
-    <span
-      class="material-symbols-outlined"
-      style="color: white; font-size: 1.75rem; vertical-align: middle">
-      info
-    </span>
+  <div class="flex nowrap">
+    <button (click)="deleteCar()" [disabled]="loading">
+      <img src="assets/icons/delete.svg" class="md:h-10 md:w-10 h-8 w-8" />
+    </button>
+    <button>
+      <img src="assets/icons/info.svg" class="md:h-10 md:w-10 h-8 w-8" />
+    </button>
   </div>
 </div>
