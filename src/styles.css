@@ -14,3 +14,9 @@ body {
   /* set the focal point to the center of the image */
   background-position: 50%;
 }
+
+@layer components {
+  .card {
+    @apply bg-background bg-opacity-50 rounded-lg px-2 sm:px-4 py-4;
+  }
+}
