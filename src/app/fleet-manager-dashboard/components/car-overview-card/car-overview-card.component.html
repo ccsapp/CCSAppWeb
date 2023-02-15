@@ -4,32 +4,36 @@
       <img class="w-8 md:w-12" [src]="path" />
     </div>
     <div>
-      <div class="text-white md:text-2xl">{{ car.brand }}, {{ car.model }}</div>
+      <div class="text-white sm:text-xl md:text-2xl">
+        {{ car.brand }}, {{ car.model }}
+      </div>
       <div class="text-white text-xs">
         <span
           class="material-symbols-outlined"
           style="color: white; font-size: 1rem; vertical-align: text-bottom">
           tag
         </span>
-        <span class="-mx-0.5">
+        <span class="-mx-0.5 pr-2">
           {{ car.vin }}
         </span>
-        <span
-          class="pl-2 material-symbols-outlined"
-          style="color: white; font-size: 1rem; vertical-align: text-bottom">
-          factory
+        <span class="whitespace-nowrap">
+          <span
+            class="material-symbols-outlined"
+            style="color: white; font-size: 1rem; vertical-align: text-bottom">
+            factory
+          </span>
+          {{ car.productionDate | date : "dd.MM.yyyy" }}
         </span>
-        {{ car.productionDate | date : "dd.MM.yyyy" }}
       </div>
     </div>
   </div>
 
   <div class="flex nowrap">
     <button (click)="deleteCar()" [disabled]="loading">
-      <img src="assets/icons/delete.svg" class="md:h-10 md:w-10 h-8 w-8" />
+      <img src="assets/icons/delete.svg" class="md:h-10 md:w-10 h-7 w-7" />
     </button>
-    <button>
-      <img src="assets/icons/info.svg" class="md:h-10 md:w-10 h-8 w-8" />
-    </button>
+    <a [routerLink]="['/dashboard', car.vin]">
+      <img src="assets/icons/info.svg" class="md:h-10 md:w-10 h-7 w-7" />
+    </a>
   </div>
 </div>

@@ -8,6 +8,23 @@ export interface Car {
 export interface DetailedCar extends Car {
   technicalSpecification: TechnicalSpecification;
   dynamicData: DynamicData;
+  rental?: Rental;
+}
+
+interface Rental {
+  id: string;
+  active: boolean;
+  customer: Customer;
+  rentalPeriod: TimePeriod;
+}
+
+interface Customer {
+  customerId: string;
+}
+
+interface TimePeriod {
+  startDate: Date;
+  endDate: Date;
 }
 
 interface TechnicalSpecification {
@@ -20,6 +37,7 @@ interface TechnicalSpecification {
   numberOfSeats: number;
   numberOfDoors: number;
   fuel: 'DIESEL' | 'PETROL' | 'HYBRID_DIESEL' | 'HYBRID_PETROL' | 'ELECTRIC';
+  fuelCapacity: string;
   consumption: Evaluation;
   emissions: Evaluation;
 }

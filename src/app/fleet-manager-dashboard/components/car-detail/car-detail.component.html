@@ -1,0 +1,17 @@
+<div *ngIf="car" class="grid-layout max-w-4xl">
+  <div class="flex gap-4 flex-col">
+    <app-dynamic-data-card [car]="car"></app-dynamic-data-card>
+    <div *ngIf="car.rental" class="card items-center text-white">
+      <div class="text-2xl mb-2">Next Rental</div>
+      <span
+        class="material-symbols-outlined mb-1"
+        style="color: white; font-size: 1.5rem; vertical-align: middle">
+        schedule
+      </span>
+      {{ car.rental.rentalPeriod.startDate | date : "dd.MM.yyyy HH:mm" }}–{{
+        car.rental.rentalPeriod.endDate | date : "dd.MM.yyyy HH:mm"
+      }}
+    </div>
+  </div>
+  <app-static-data-card [car]="car"></app-static-data-card>
+</div>

@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { TestScheduler } from 'rxjs/testing';
-import { TitleService } from './title.service';
+import { NavbarState, TitleService } from './title.service';
 
 describe('TitleService', () => {
   let testScheduler: TestScheduler;
@@ -23,47 +23,27 @@ describe('TitleService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('title works', () => {
+  it('navbarState works', () => {
+    const navbarState1: NavbarState = {
+      title: 'a title',
+    };
+
+    const navbarState2: NavbarState = {
+      title: 'some other title',
+      backButtonPath: 'some path',
+      titleIconPath: 'some icon path',
+    };
+
     testScheduler.run(({ cold, expectObservable }) => {
       cold('-a(b|)', {
-        a: 'a title',
-        b: 'some other title',
-      }).subscribe((title) => service.setTitle(title));
+        a: navbarState1,
+        b: navbarState2,
+      }).subscribe((title) => service.setNavbarState(title));
 
-      expectObservable(service.title$).toBe('abc', {
-        a: '',
-        b: 'a title',
-        c: 'some other title',
-      });
-    });
-  });
-
-  it('backButtonPath works', () => {
-    testScheduler.run(({ cold, expectObservable }) => {
-      cold('-a(b|)', {
-        a: '/sample-path',
-        b: null,
-      }).subscribe((path) => service.setBackButtonPath(path));
-
-      expectObservable(service.backButtonPath$).toBe('abc', {
-        a: null,
-        b: '/sample-path',
-        c: null,
-      });
-    });
-  });
-
-  it('titleIconPath works', () => {
-    testScheduler.run(({ cold, expectObservable }) => {
-      cold('-a(b|)', {
-        a: '/sample-path',
-        b: null,
-      }).subscribe((path) => service.setTitleIconPath(path));
-
-      expectObservable(service.titleIcon$).toBe('abc', {
-        a: null,
-        b: '/sample-path',
-        c: null,
+      expectObservable(service.navbarState$).toBe('abc', {
+        a: { title: '' },
+        b: navbarState1,
+        c: navbarState2,
       });
     });
   });

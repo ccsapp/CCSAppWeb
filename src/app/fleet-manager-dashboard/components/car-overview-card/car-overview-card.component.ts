@@ -3,6 +3,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FleetDataService } from 'src/app/services/fleet-data.service';
 import { ToastService } from 'src/app/services/toast.service';
 import { Car } from 'src/app/_models/fleet-data';
+import paths from 'src/assets/brands/brands.json';
 
 @Component({
   selector: 'app-car-overview-card',
@@ -15,11 +16,6 @@ export class CarOverviewCardComponent implements OnInit {
   path: string = '';
   loading: boolean = false;
 
-  static paths: { [brand: string]: string } = {
-    'Audi': '/assets/brands/audi.svg',
-    'Mercedes-Benz': '/assets/brands/mercedes.svg',
-  };
-
   constructor(
     private toastService: ToastService,
     private fleetData: FleetDataService
@@ -30,7 +26,7 @@ export class CarOverviewCardComponent implements OnInit {
   }
 
   getIconPath(): string {
-    return CarOverviewCardComponent.paths[this.car.brand];
+    return paths[this.car.brand];
   }
 
   /** This method handles the removal of a car from the fleet
