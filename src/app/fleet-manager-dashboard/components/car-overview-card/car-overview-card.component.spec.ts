@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 import { TestScheduler } from 'rxjs/testing';
 import { SCHEDULER } from 'src/app/util';
 
@@ -20,6 +21,7 @@ describe('CarOverviewCardComponent', () => {
     const hcSpy = jasmine.createSpyObj('HttpClient', ['get', 'put', 'delete']);
     await TestBed.configureTestingModule({
       declarations: [CarOverviewCardComponent],
+      imports: [RouterTestingModule],
       providers: [
         { provide: HttpClient, useValue: hcSpy },
         { provide: SCHEDULER, useValue: testScheduler },

@@ -22,6 +22,6 @@ export class FleetOverviewComponent implements OnInit {
     this.fleetData$ = this.dataChanged$.pipe(
       switchMap(() => this.fleetDataService.getCars())
     );
-    this.titleService.setTitle('Your Fleet');
+    this.titleService.setNavbarState({ title: 'Your Fleet' });
   }
 }

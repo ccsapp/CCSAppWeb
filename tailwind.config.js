@@ -18,6 +18,9 @@ module.exports = {
         heading: ["Roboto Condensed", "Helvetica", "sans-serif"],
         body: ["Roboto", "Helvetica", "sans-serif"],
       },
+      maxWidth: {
+        xxs: "16rem",
+      },
     },
   },
   plugins: [],

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { TitleService } from 'src/app/services/title.service';
+import { NavbarState, TitleService } from 'src/app/services/title.service';
 
 @Component({
   selector: 'app-navbar',
@@ -8,15 +9,15 @@ import { TitleService } from 'src/app/services/title.service';
   styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent implements OnInit {
-  title$!: Observable<string>;
-  backButtonPath$!: Observable<string | null>;
-  titleIconPath$!: Observable<string | null>;
+  navbarState$!: Observable<NavbarState>;
 
-  constructor(private titleService: TitleService) {}
+  constructor(private titleService: TitleService, private router: Router) {}
 
   ngOnInit(): void {
-    this.title$ = this.titleService.title$;
-    this.backButtonPath$ = this.titleService.backButtonPath$;
-    this.titleIconPath$ = this.titleService.titleIcon$;
+    this.navbarState$ = this.titleService.navbarState$;
+  }
+
+  navigateBack(path: string) {
+    this.router.navigate([path]);
   }
 }

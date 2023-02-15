@@ -1,12 +1,12 @@
-<div class="flex justify-center">
-  <div *ngIf="backButtonPath$ | async as path; else name" class="flex-1 flex">
-    <a [routerLink]="path">
+<div *ngIf="navbarState$ | async as state" class="flex justify-center">
+  <div *ngIf="state.backButtonPath; else name" class="flex-1 flex">
+    <button (click)="navigateBack(state.backButtonPath)">
       <span
         class="material-symbols-outlined p-2"
-        style="color: white; font-size: 2.5rem; vertical-align: middle">
+        style="color: white; font-size: 2.25rem; vertical-align: middle">
         arrow_back
       </span>
-    </a>
+    </button>
   </div>
   <ng-template #name>
     <div class="flex-1 flex">
@@ -14,15 +14,16 @@
       <div class="hidden md:block text-white text-3xl pt-2">CCSApp</div>
     </div>
   </ng-template>
-  <div class="flex">
-    <div *ngIf="titleIconPath$ | async as path">
-      <img [src]="path" class="h-8 m-2" />
+  <div class="flex items-center">
+    <div *ngIf="state.titleIconPath">
+      <img [src]="state.titleIconPath" class="h-8 m-2" />
     </div>
-    <div *ngIf="title$ | async as title" class="text-white text-3xl p-2">
-      {{ title }}
+    <div
+      class="text-white sm:text-3xl text-xl py-2 sm:px-2 max-w-xxs sm:max-w-xs md:max-w-none whitespace-nowrap overflow-hidden text-ellipsis">
+      {{ state.title }}
     </div>
   </div>
   <!-- this pseudo element is responsible for centering the title -->
   <div class="flex-1"></div>
 </div>
-<div class="h-1 bg-primary"></div>
+<div class="h-1 bg-primary mb-6"></div>
