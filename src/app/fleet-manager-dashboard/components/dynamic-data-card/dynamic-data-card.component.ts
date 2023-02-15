@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { capitilizeWord } from 'src/app/util';
 import { DetailedCar } from 'src/app/_models/fleet-data';
 
 @Component({
@@ -17,7 +18,7 @@ export class DynamicDataCardComponent implements OnInit {
     this.locationLink = `https://www.openstreetmap.org/?mlat=${this.car.dynamicData.position.latitude}&mlon=${this.car.dynamicData.position.longitude}`;
   }
 
-  capitilizeWord(str: string): string {
-    return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+  capitilizeWord(word: string) {
+    return capitilizeWord(word);
   }
 }

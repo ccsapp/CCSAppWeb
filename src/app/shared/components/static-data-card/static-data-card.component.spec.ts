@@ -1,11 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { DetailedCar } from 'src/app/_models/fleet-data';
 
-import { DynamicDataCardComponent } from './dynamic-data-card.component';
+import { StaticDataCardComponent } from './static-data-card.component';
 
-describe('DynamicDataCardComponent', () => {
-  let component: DynamicDataCardComponent;
-  let fixture: ComponentFixture<DynamicDataCardComponent>;
+describe('StaticDataCardComponent', () => {
+  let component: StaticDataCardComponent;
+  let fixture: ComponentFixture<StaticDataCardComponent>;
 
   const detailedCar: DetailedCar = {
     vin: 'WVWAA71K08W201030',
@@ -27,7 +27,7 @@ describe('DynamicDataCardComponent', () => {
       },
       numberOfSeats: 7,
       numberOfDoors: 5,
-      fuel: 'ELECTRIC',
+      fuel: 'HYBRID_DIESEL',
       consumption: {
         city: 6.4,
         overland: 4.6,
@@ -65,10 +65,10 @@ describe('DynamicDataCardComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [DynamicDataCardComponent],
+      declarations: [StaticDataCardComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(DynamicDataCardComponent);
+    fixture = TestBed.createComponent(StaticDataCardComponent);
     component = fixture.componentInstance;
     component.car = detailedCar;
     fixture.detectChanges();

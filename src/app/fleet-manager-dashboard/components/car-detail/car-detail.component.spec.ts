@@ -1,11 +1,29 @@
+import { HttpClient } from '@angular/common/http';
+import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 import { DetailedCar } from 'src/app/_models/fleet-data';
 
-import { DynamicDataCardComponent } from './dynamic-data-card.component';
+import { CarDetailComponent } from './car-detail.component';
 
-describe('DynamicDataCardComponent', () => {
-  let component: DynamicDataCardComponent;
-  let fixture: ComponentFixture<DynamicDataCardComponent>;
+describe('CarDetailComponent', () => {
+  let component: CarDetailComponent;
+  let fixture: ComponentFixture<CarDetailComponent>;
+  let httpClientSpy: jasmine.SpyObj<HttpClient>;
+
+  @Component({
+    selector: 'app-static-data-card',
+    template: '',
+    inputs: ['car'],
+  })
+  class StaticDataCardStub {}
+
+  @Component({
+    selector: 'app-dynamic-data-card',
+    template: '',
+    inputs: ['car'],
+  })
+  class DyanmicDataCardStub {}
 
   const detailedCar: DetailedCar = {
     vin: 'WVWAA71K08W201030',
@@ -65,13 +83,21 @@ describe('DynamicDataCardComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [DynamicDataCardComponent],
+      declarations: [
+        CarDetailComponent,
+        StaticDataCardStub,
+        DyanmicDataCardStub,
+      ],
+      imports: [RouterTestingModule],
+
+      providers: [{ provide: HttpClient, useValue: httpClientSpy }],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(DynamicDataCardComponent);
+    fixture = TestBed.createComponent(CarDetailComponent);
     component = fixture.componentInstance;
     component.car = detailedCar;
     fixture.detectChanges();
+    httpClientSpy = TestBed.inject(HttpClient) as jasmine.SpyObj<HttpClient>;
   });
 
   it('should create', () => {
