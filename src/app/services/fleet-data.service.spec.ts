@@ -50,7 +50,8 @@ describe('FleetDataService', () => {
       },
       numberOfSeats: 7,
       numberOfDoors: 5,
-      fuel: 'ELECTRIC',
+      fuel: 'HYBRID_DIESEL',
+      fuelCapacity: '54.0L;85.2kWh',
       consumption: {
         city: 6.4,
         overland: 4.6,
@@ -71,6 +72,17 @@ describe('FleetDataService', () => {
         longitude: 8.4037,
       },
       trunkLockState: 'UNLOCKED',
+    },
+    rental: {
+      id: 'rZ6IIwcD',
+      active: true,
+      customer: {
+        customerId: 'd9ChwOvI',
+      },
+      rentalPeriod: {
+        startDate: new Date('2017-07-21T17:32:28Z'),
+        endDate: new Date('2017-07-21T17:32:28Z'),
+      },
     },
   };
 

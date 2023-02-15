@@ -1,14 +1,13 @@
 import { HttpClient } from '@angular/common/http';
+import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FleetOverviewComponent } from './fleet-overview.component';
-import { Component } from '@angular/core';
 
 @Component({ selector: 'app-add-car-card', template: '' })
 class AddCarCardStub {}
-@Component({ selector: 'app-remove-car-modal', template: '' })
-class RemoveCarModalStub {}
-@Component({ selector: 'app-error-message-modal', template: '' })
-class ErrorMessageModalStub {}
+
+@Component({ selector: 'app-overview-card', template: '' })
+class OverviewCardStub {}
 
 describe('FleetOverviewComponent', () => {
   let component: FleetOverviewComponent;
@@ -19,12 +18,7 @@ describe('FleetOverviewComponent', () => {
     const hcSpy = jasmine.createSpyObj('HttpClient', ['get', 'put', 'delete']);
 
     await TestBed.configureTestingModule({
-      declarations: [
-        FleetOverviewComponent,
-        AddCarCardStub,
-        RemoveCarModalStub,
-        ErrorMessageModalStub,
-      ],
+      declarations: [FleetOverviewComponent, AddCarCardStub, OverviewCardStub],
       providers: [{ provide: HttpClient, useValue: hcSpy }],
     }).compileComponents();
 

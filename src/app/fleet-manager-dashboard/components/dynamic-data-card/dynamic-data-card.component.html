@@ -1,30 +1,30 @@
 <div class="card items-center">
   <div class="text-white text-2xl">About the Car</div>
 
-  <table class="text-white mt-2">
+  <table class="text-white mt-2 text-sm sm:text-base">
     <tr>
-      <td class="flex flex-nowrap pr-4">
+      <td class="align-top pr-2">
         <span
           class="material-symbols-outlined mb-1"
           style="color: white; font-size: 1.5rem; vertical-align: middle">
           tag
         </span>
-        <div>Vehicle Identification Number</div>
       </td>
+      <td class="pr-4">Vehicle Identification Number</td>
       <td class="pl-1 align-top text-sm sm:text-base">{{ car.vin }}</td>
     </tr>
 
     <tr>
-      <td class="flex flex-nowrap pr-4">
+      <td class="align-top">
         <span
           class="material-symbols-outlined mb-1"
           style="color: white; font-size: 1.5rem; vertical-align: middle">
           pin_drop
         </span>
-        <div>Position (Latitude/Longitude)</div>
       </td>
+      <td class="pr-4">Position (Latitude/Longitude)</td>
       <td class="pl-1 align-top">
-        <a class="underline" [href]="locationLink">
+        <a class="underline" [href]="locationLink" target="_blank">
           {{ car.dynamicData.position.latitude }},
           {{ car.dynamicData.position.longitude }}
           <span
@@ -37,26 +37,26 @@
     </tr>
 
     <tr>
-      <td class="mr-4">
+      <td>
         <span
           class="material-symbols-outlined mb-1"
           style="color: white; font-size: 1.5rem; vertical-align: middle">
           speed
         </span>
-        Fuel Level
       </td>
+      <td class="mr-4">Fuel Level</td>
       <td class="pl-1">{{ car.dynamicData.fuelLevelPercentage }} %</td>
     </tr>
 
     <tr>
-      <td class="mr-4">
+      <td>
         <span
           class="material-symbols-outlined mb-1"
           style="color: white; font-size: 1.5rem; vertical-align: middle">
           lock
         </span>
-        Trunk Lock State
       </td>
+      <td class="mr-4">Trunk Lock State</td>
       <td>
         <span
           *ngIf="car.dynamicData.trunkLockState === 'LOCKED'"
@@ -76,14 +76,14 @@
     </tr>
 
     <tr>
-      <td class="mr-4">
+      <td>
         <span
           class="material-symbols-outlined mb-1"
           style="color: white; font-size: 1.5rem; vertical-align: middle">
           key
         </span>
-        Doors Lock State
       </td>
+      <td class="mr-4">Doors Lock State</td>
       <td>
         <span
           *ngIf="car.dynamicData.doorsLockState === 'LOCKED'"
@@ -103,14 +103,14 @@
     </tr>
 
     <tr>
-      <td class="mr-4">
+      <td>
         <span
           class="material-symbols-outlined mb-1"
           style="color: white; font-size: 1.5rem; vertical-align: middle">
           power_settings_new
         </span>
-        Engine State
       </td>
+      <td class="mr-4">Engine State</td>
       <td>
         <span
           *ngIf="car.dynamicData.engineState === 'ON'"
