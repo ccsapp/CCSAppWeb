@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { capitilizeWord } from 'src/app/util';
+import { capitalizeWord } from 'src/app/util';
 import { DetailedCar } from 'src/app/_models/fleet-data';
 
 @Component({
@@ -36,7 +36,7 @@ export class StaticDataCardComponent implements OnInit {
     }
   }
 
-  capitilizeWord(word: string) {
-    return capitilizeWord(word);
+  capitalizeWord(word: string) {
+    return capitalizeWord(word);
   }
 }

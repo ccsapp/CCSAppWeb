@@ -69,8 +69,8 @@
           settings_applications
         </span>
       </td>
-      <td class="pr-16">Transmission Type</td>
-      <td>{{ capitilizeWord(car.technicalSpecification.transmission) }}</td>
+      <td class="pr-8">Transmission Type</td>
+      <td>{{ capitalizeWord(car.technicalSpecification.transmission) }}</td>
     </tr>
 
     <tr>
@@ -106,7 +106,7 @@
         </span>
       </td>
       <td class="pr-8">Fuel Type</td>
-      <td>{{ capitilizeWord(car.technicalSpecification.fuel) }}</td>
+      <td>{{ capitalizeWord(car.technicalSpecification.fuel) }}</td>
     </tr>
 
     <tr *ngIf="fuelCapacityGasoline">
@@ -212,7 +212,7 @@
           style="color: white; font-size: 1.5rem; vertical-align: middle">
           functions
         </span>
-        <span class="ml-2"> Combined </span>
+        <span class="ml-2">Combined</span>
       </td>
       <td>{{ car.technicalSpecification.consumption.combined }} l/100km</td>
     </tr>
