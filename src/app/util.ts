@@ -3,7 +3,7 @@ import { SchedulerLike } from 'rxjs';
 
 export let SCHEDULER = new InjectionToken<SchedulerLike>('app.scheduler');
 
-export function capitilizeWord(str: string): string {
+export function capitalizeWord(str: string): string {
   return str
     .split('_')
     .map((word) => {
