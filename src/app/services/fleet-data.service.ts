@@ -2,13 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, catchError, tap } from 'rxjs';
 import { environment } from '../../environments/environment';
-import { Car, DetailedCar } from '../_models/fleet-data';
+import { DetailedCar, OverviewCar } from '../_models/fleet-data';
 
 @Injectable({
   providedIn: 'root',
 })
 export class FleetDataService {
-  private API_URL = environment.API_URL;
+  private API_URL = environment.FLEETM_API_URL;
   private FLEET_ID = environment.FLEET_ID;
   private dataChanged$ = new BehaviorSubject(null);
 
@@ -23,7 +23,9 @@ export class FleetDataService {
   }
 
   getCars() {
-    return this.http.get<Car[]>(`${this.API_URL}/fleets/${this.FLEET_ID}/cars`);
+    return this.http.get<OverviewCar[]>(
+      `${this.API_URL}/fleets/${this.FLEET_ID}/cars`
+    );
   }
 
   addCar(vin: string) {
