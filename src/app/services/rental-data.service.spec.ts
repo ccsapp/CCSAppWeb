@@ -303,7 +303,7 @@ describe('RentalDataService', () => {
     httpTestingController.verify();
   });
 
-  it('createRental returns error on failure )', () => {
+  it('createRental returns error on failure', () => {
     const url =
       fleetBaseLink +
       `/cars/${carWithTechnicalSpecification.vin}/rentals?customerId=${environment.CUSTOMER_ID}`;
