@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable, switchMap } from 'rxjs';
 import { FleetDataService } from 'src/app/services/fleet-data.service';
 import { TitleService } from 'src/app/services/title.service';
-import { Car } from 'src/app/_models/fleet-data';
+import { OverviewCar } from 'src/app/_models/fleet-data';
 
 @Component({
   selector: 'app-fleet-overview',
@@ -10,7 +10,7 @@ import { Car } from 'src/app/_models/fleet-data';
   styleUrls: ['./fleet-overview.component.css'],
 })
 export class FleetOverviewComponent implements OnInit {
-  fleetData$!: Observable<Car[]>;
+  fleetData$!: Observable<OverviewCar[]>;
   dataChanged$ = this.fleetDataService.dataChanged;
 
   constructor(

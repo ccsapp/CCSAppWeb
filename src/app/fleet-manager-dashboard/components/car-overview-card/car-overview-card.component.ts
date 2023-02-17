@@ -2,7 +2,7 @@ import { HttpErrorResponse, HttpStatusCode } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { FleetDataService } from 'src/app/services/fleet-data.service';
 import { ToastService } from 'src/app/services/toast.service';
-import { Car } from 'src/app/_models/fleet-data';
+import { OverviewCar } from 'src/app/_models/fleet-data';
 import paths from 'src/assets/brands/brands.json';
 
 @Component({
@@ -11,7 +11,7 @@ import paths from 'src/assets/brands/brands.json';
   styleUrls: ['./car-overview-card.component.css'],
 })
 export class CarOverviewCardComponent implements OnInit {
-  @Input() car!: Car;
+  @Input() car!: OverviewCar;
 
   path: string = '';
   loading: boolean = false;

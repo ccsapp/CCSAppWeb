@@ -7,20 +7,21 @@ import {
 import { TestBed } from '@angular/core/testing';
 import { TestScheduler } from 'rxjs/testing';
 import { environment } from '../../environments/environment';
-import { Car, DetailedCar } from '../_models/fleet-data';
+import { DetailedCar, OverviewCar } from '../_models/fleet-data';
 import { FleetDataService } from './fleet-data.service';
 
 describe('FleetDataService', () => {
-  const fleetBaseLink = environment.API_URL + '/fleets/' + environment.FLEET_ID;
+  const fleetBaseLink =
+    environment.FLEETM_API_URL + '/fleets/' + environment.FLEET_ID;
 
-  const car1: Car = {
+  const car1: OverviewCar = {
     vin: 'WVWAA71K08W201030',
     brand: 'Audi',
     model: 'A3',
     productionDate: new Date(2017, 7, 21),
   };
 
-  const car2: Car = {
+  const car2: OverviewCar = {
     vin: 'WVWAA71K08W201031',
     brand: 'Audi',
     model: 'A4',
