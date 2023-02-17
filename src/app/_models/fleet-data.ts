@@ -1,11 +1,11 @@
-export interface Car {
+export interface OverviewCar {
   vin: string;
   brand: string;
   model: string;
   productionDate: Date;
 }
 
-export interface DetailedCar extends Car {
+export interface DetailedCar extends OverviewCar {
   technicalSpecification: TechnicalSpecification;
   dynamicData: DynamicData;
   rental?: Rental;
@@ -27,7 +27,7 @@ interface TimePeriod {
   endDate: Date;
 }
 
-interface TechnicalSpecification {
+export interface TechnicalSpecification {
   color: string;
   weight: number;
   trunkVolume: number;
@@ -42,7 +42,7 @@ interface TechnicalSpecification {
   emissions: Evaluation;
 }
 
-interface DynamicData {
+export interface DynamicData {
   fuelLevelPercentage: number;
   position: Position;
   trunkLockState: 'LOCKED' | 'UNLOCKED';
