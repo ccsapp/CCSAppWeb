@@ -1,0 +1,60 @@
+<div
+  *ngIf="currentPage.length > 0; else noCars"
+  class="mt-6 flex flex-col gap-y-6">
+  <div class="flex flex-col gap-4">
+    <div *ngFor="let car of currentPage" class="flex w-full gap-4 items-center">
+      <div>
+        <img class="w-8 md:w-12" [src]="getPath(car)" />
+      </div>
+      <div
+        class="text-white md:text-3xl whitespace-nowrap overflow-hidden text-ellipsis">
+        {{ car.brand }}, {{ car.model }}
+
+        <div class="text-white text-xs">
+          <span
+            class="material-symbols-outlined"
+            style="color: white; font-size: 1rem; vertical-align: middle">
+            airline_seat_recline_normal
+          </span>
+          <span class="-mx-0.5"> {{ car.numberOfSeats }} Seats </span>
+        </div>
+      </div>
+      <div class="flex-1 flex justify-end">
+        <button>
+          <span
+            class="material-symbols-outlined"
+            style="color: white; font-size: 2.5rem; vertical-align: middle">
+            arrow_right
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="flex flex-row justify-between">
+    <div class="flex-1 flex items-center justify-start">
+      <button *ngIf="hasLeft; else filler" (click)="paginate(-1)">
+        <span
+          class="material-symbols-outlined"
+          style="color: white; font-size: 3rem; vertical-align: middle">
+          arrow_back
+        </span>
+      </button>
+    </div>
+    <ng-template #filler><div class="flex-1"></div></ng-template>
+    <div class="flex-1 flex items-center justify-end">
+      <button *ngIf="hasRight; else filler" (click)="paginate(1)">
+        <span
+          class="material-symbols-outlined"
+          style="color: white; font-size: 3rem; vertical-align: middle">
+          arrow_forward
+        </span>
+      </button>
+    </div>
+  </div>
+</div>
+<ng-template #noCars>
+  <div class="text-sm text-white mt-2">
+    No rentable cars found in the given period.
+  </div>
+</ng-template>
