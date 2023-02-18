@@ -21,6 +21,9 @@ module.exports = {
       maxWidth: {
         xxs: "16rem",
       },
+      gridTemplateColumns: {
+        "create-rental": "repeat(2, 1fr) 5.75rem",
+      },
     },
   },
   plugins: [],

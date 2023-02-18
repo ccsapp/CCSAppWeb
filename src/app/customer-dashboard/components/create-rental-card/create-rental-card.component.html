@@ -1,0 +1,83 @@
+<div class="card px-8 flex flex-col relative">
+  <div *ngIf="results" class="absolute top-0.5 right-0.5 w-10">
+    <span
+      (click)="clearResults()"
+      class="material-symbols-outlined pl-2 cursor-pointer"
+      style="color: white; font-size: 1.75rem; vertical-align: middle">
+      close
+    </span>
+  </div>
+  <div class="w-[285px] sm:w-[400px] md:w-[700px]">
+    <form
+      class="grid md:grid-cols-create-rental sm:grid-rows-2 sm:grid-flow-col md:grid-flow-row md:grid-rows-1 items-end gap-y-2 gap-x-4"
+      [formGroup]="timePeriodForm">
+      <div formGroupName="startDate">
+        <p class="font-bold text-white">Start Date</p>
+        <div class="flex gap-2">
+          <input
+            class="h-8 py-0.5 px-2 rounded-lg text-black form-control shadow-md shadow-gray-800"
+            type="date"
+            [min]="currentDate()"
+            max="2100-01-01"
+            formControlName="date" />
+          <input
+            class="h-8 py-0.5 px-2 w-32 rounded-lg text-black form-control shadow-md shadow-gray-800"
+            formControlName="time"
+            placeholder="15:00"
+            type="time" />
+          <span
+            *ngIf="isFirefox"
+            class="material-symbols-outlined -ml-10 inline-flex items-center pointer-events-none"
+            style="font-size: 1.5rem; vertical-align: middle">
+            schedule
+          </span>
+        </div>
+      </div>
+      <div formGroupName="endDate">
+        <p class="font-bold text-white">End Date</p>
+        <div class="flex gap-2">
+          <input
+            class="h-8 p-0.5 px-2 rounded-lg text-black form-control shadow-md shadow-gray-800"
+            type="date"
+            [min]="currentDate()"
+            max="2100-01-01"
+            formControlName="date" />
+          <input
+            class="h-8 py-0.5 px-2 w-32 rounded-lg text-black form-control shadow-md shadow-gray-800"
+            formControlName="time"
+            placeholder="15:00"
+            type="time" />
+          <span
+            *ngIf="isFirefox"
+            class="material-symbols-outlined -ml-10 inline-flex items-center pointer-events-none"
+            style="font-size: 1.5rem; vertical-align: middle">
+            schedule
+          </span>
+        </div>
+      </div>
+      <div class="sm:row-span-2 md:row-span-1">
+        <button
+          type="button"
+          class="h-8 mt-1 pr-3 bg-primary text-xl text-white rounded-lg shadow-md shadow-gray-800"
+          [disabled]="loading"
+          [ngClass]="loading ? 'bg-gray-600' : ''"
+          (click)="onSubmit()">
+          <span
+            class="material-symbols-outlined pl-2"
+            style="color: white; font-size: 1.75rem; vertical-align: middle">
+            search
+          </span>
+          Find
+        </button>
+      </div>
+    </form>
+    <p *ngIf="errorMessage" class="text-sm text-warning mt-2">
+      {{ errorMessage }}
+    </p>
+  </div>
+  <app-create-rental-results
+    class="w-[285px] sm:w-[400px] md:w-[700px]"
+    *ngIf="results"
+    [fullResults]="results">
+  </app-create-rental-results>
+</div>
