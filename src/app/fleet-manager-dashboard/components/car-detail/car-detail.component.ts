@@ -37,7 +37,7 @@ export class CarDetailComponent implements OnInit {
             title:
               err.status == HttpStatusCode.NotFound
                 ? 'Car Not Found, Maybe It Was Deleted?'
-                : ' An Error Occurred',
+                : 'An Error Occurred',
             backButtonPath: '/dashboard',
           });
         },
