@@ -27,7 +27,7 @@ describe('DynamicDataCardComponent', () => {
       },
       numberOfSeats: 7,
       numberOfDoors: 5,
-      fuel: 'ELECTRIC',
+      fuel: 'HYBRID_DIESEL',
       consumption: {
         city: 6.4,
         overland: 4.6,
