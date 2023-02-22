@@ -2,31 +2,37 @@
   *ngIf="currentPage.length > 0; else noCars"
   class="mt-6 flex flex-col gap-y-6">
   <div class="flex flex-col gap-4">
-    <div *ngFor="let car of currentPage" class="flex w-full gap-4 items-center">
-      <div>
-        <img class="w-8 md:w-12" [src]="getPath(car)" />
-      </div>
-      <div
-        class="text-white md:text-3xl whitespace-nowrap overflow-hidden text-ellipsis">
-        {{ car.brand }}, {{ car.model }}
+    <div *ngFor="let entry of currentPage">
+      <div class="flex w-full gap-4 items-center">
+        <div>
+          <img class="w-8 md:w-12" [src]="getLogoPath(entry.car)" />
+        </div>
+        <div
+          class="text-white md:text-3xl whitespace-nowrap overflow-hidden text-ellipsis">
+          {{ entry.car.brand }}, {{ entry.car.model }}
 
-        <div class="text-white text-xs">
-          <span
-            class="material-symbols-outlined"
-            style="color: white; font-size: 1rem; vertical-align: middle">
-            airline_seat_recline_normal
-          </span>
-          <span class="-mx-0.5"> {{ car.numberOfSeats }} Seats </span>
+          <div class="text-white text-xs">
+            <span
+              class="material-symbols-outlined"
+              style="color: white; font-size: 1rem; vertical-align: middle">
+              airline_seat_recline_normal
+            </span>
+            <span class="-mx-0.5"> {{ entry.car.numberOfSeats }} Seats </span>
+          </div>
+        </div>
+        <div class="flex-1 flex justify-end">
+          <button (click)="entry.expanded = !entry.expanded">
+            <span
+              class="material-symbols-outlined"
+              style="color: white; font-size: 2.5rem; vertical-align: middle">
+              {{ entry.expanded ? "arrow_drop_down" : "arrow_right" }}
+            </span>
+          </button>
         </div>
       </div>
-      <div class="flex-1 flex justify-end">
-        <button>
-          <span
-            class="material-symbols-outlined"
-            style="color: white; font-size: 2.5rem; vertical-align: middle">
-            arrow_right
-          </span>
-        </button>
+      <div *ngIf="entry.expanded" class="mt-4 -mx-4">
+        <app-create-rental-details
+          [vin]="entry.car.vin"></app-create-rental-details>
       </div>
     </div>
   </div>

@@ -1,0 +1,267 @@
+<div
+  *ngIf="car"
+  class="bg-background bg-opacity-50 rounded-lg py-4 px-4 sm:max-md:px-2 md:px-6">
+  <table class="text-white sm:max-md:text-sm text-base w-full">
+    <tbody class="md:w-[50%] md:inline-block align-top md:pr-4">
+      <tr>
+        <td class="pr-2">
+          <span
+            class="material-symbols-outlined mb-0.5"
+            style="color: white; font-size: 1rem; vertical-align: middle">
+            palette
+          </span>
+        </td>
+        <td class="pr-8">Color</td>
+        <td>{{ capitalizeWord(car.technicalSpecification!.color) }}</td>
+      </tr>
+
+      <tr>
+        <td>
+          <span
+            class="material-symbols-outlined"
+            style="color: white; font-size: 1rem; vertical-align: middle">
+            weight
+          </span>
+        </td>
+        <td class="pr-8">Weight</td>
+        <td>{{ car.technicalSpecification!.weight }} kg</td>
+      </tr>
+
+      <tr>
+        <td>
+          <span
+            class="material-symbols-outlined mb-1"
+            style="color: white; font-size: 1rem; vertical-align: middle">
+            luggage
+          </span>
+        </td>
+        <td class="pr-8">Trunk Volume</td>
+        <td>{{ car.technicalSpecification!.trunkVolume }} l</td>
+      </tr>
+
+      <tr>
+        <td>
+          <span
+            class="material-symbols-outlined mb-1"
+            style="color: white; font-size: 1rem; vertical-align: middle">
+            directions_car
+          </span>
+        </td>
+        <td class="pr-8">Engine Type</td>
+        <td>{{ car.technicalSpecification!.engine.type }}</td>
+      </tr>
+
+      <tr>
+        <td>
+          <span
+            class="material-symbols-outlined mb-1"
+            style="color: white; font-size: 1rem; vertical-align: middle">
+            bolt
+          </span>
+        </td>
+        <td class="pr-8">Power</td>
+        <td>{{ car.technicalSpecification!.engine.power }} PS</td>
+      </tr>
+
+      <tr>
+        <td>
+          <span
+            class="material-symbols-outlined mb=1"
+            style="color: white; font-size: 1rem; vertical-align: middle">
+            settings_applications
+          </span>
+        </td>
+        <td class="pr-8">Transmission Type</td>
+        <td>{{ capitalizeWord(car.technicalSpecification!.transmission) }}</td>
+      </tr>
+
+      <tr>
+        <td>
+          <span
+            class="material-symbols-outlined mb-1"
+            style="color: white; font-size: 1rem; vertical-align: middle">
+            airline_seat_recline_normal
+          </span>
+        </td>
+        <td class="pr-8">Number of Seats</td>
+        <td>{{ car.technicalSpecification!.numberOfSeats }}</td>
+      </tr>
+
+      <tr>
+        <td>
+          <span
+            class="material-symbols-outlined mb-1"
+            style="color: white; font-size: 1rem; vertical-align: middle">
+            sensor_door
+          </span>
+        </td>
+        <td class="pr-8">Number of Doors</td>
+        <td>{{ car.technicalSpecification!.numberOfDoors }}</td>
+      </tr>
+    </tbody>
+    <tbody class="md:w-[50%] md:inline-block align-top">
+      <tr>
+        <td class="pr-2">
+          <span
+            class="material-symbols-outlined mb-1"
+            style="color: white; font-size: 1rem; vertical-align: middle">
+            local_gas_station
+          </span>
+        </td>
+        <td class="pr-8">Fuel Type</td>
+        <td>{{ capitalizeWord(car.technicalSpecification!.fuel) }}</td>
+      </tr>
+
+      <tr *ngIf="fuelCapacityGasoline">
+        <td>
+          <span
+            class="material-symbols-outlined mb-1"
+            style="color: white; font-size: 1rem; vertical-align: middle">
+            propane_tank
+          </span>
+        </td>
+        <td class="pr-8">Fuel Tank Size</td>
+        <td>{{ fuelCapacityGasoline }} L</td>
+      </tr>
+
+      <tr *ngIf="fuelCapacityElectric">
+        <td>
+          <span
+            class="material-symbols-outlined mb-1"
+            style="color: white; font-size: 1rem; vertical-align: middle">
+            battery_full
+          </span>
+        </td>
+        <td class="pr-8">Battery Capacity</td>
+        <td>{{ fuelCapacityElectric }} kWh</td>
+      </tr>
+
+      <tr>
+        <td>
+          <span
+            class="material-symbols-outlined mb-1"
+            style="color: white; font-size: 1rem; vertical-align: middle">
+            oil_barrel
+          </span>
+        </td>
+        <td class="pr-8">Consumption</td>
+      </tr>
+
+      <tr>
+        <td></td>
+        <td>
+          <span
+            class="material-symbols-outlined mb-0.5"
+            style="color: white; font-size: 1rem; vertical-align: middle">
+            location_city
+          </span>
+          <span class="ml-2">City</span>
+        </td>
+        <td class="whitespace-nowrap">
+          {{ car.technicalSpecification!.consumption.city }} l/100km
+        </td>
+      </tr>
+
+      <tr>
+        <td></td>
+        <td>
+          <span
+            class="material-symbols-outlined mb-1"
+            style="color: white; font-size: 1rem; vertical-align: middle">
+            landscape
+          </span>
+          <span class="ml-2">Overland</span>
+        </td>
+        <td class="whitespace-nowrap">
+          {{ car.technicalSpecification!.consumption.overland }} l/100km
+        </td>
+      </tr>
+
+      <tr>
+        <td></td>
+        <td>
+          <span
+            class="material-symbols-outlined mb-1"
+            style="color: white; font-size: 1rem; vertical-align: middle">
+            functions
+          </span>
+          <span class="ml-2">Combined</span>
+        </td>
+        <td class="whitespace-nowrap">
+          {{ car.technicalSpecification!.consumption.combined }}
+          l/100km
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <span
+            class="material-symbols-outlined mb-1"
+            style="color: white; font-size: 1rem; vertical-align: middle">
+            co2
+          </span>
+        </td>
+        <td class="pr-8">Emissions</td>
+      </tr>
+
+      <tr>
+        <td></td>
+        <td>
+          <span
+            class="material-symbols-outlined mb-0.5"
+            style="color: white; font-size: 1rem; vertical-align: middle">
+            location_city
+          </span>
+          <span class="ml-2">City</span>
+        </td>
+        <td class="whitespace-nowrap">
+          {{ car.technicalSpecification!.emissions.city }} g/100km
+        </td>
+      </tr>
+
+      <tr>
+        <td></td>
+        <td>
+          <span
+            class="material-symbols-outlined mb-1"
+            style="color: white; font-size: 1rem; vertical-align: middle">
+            landscape
+          </span>
+          <span class="ml-2">Overland</span>
+        </td>
+        <td class="whitespace-nowrap">
+          {{ car.technicalSpecification!.emissions.overland }} g/100km
+        </td>
+      </tr>
+
+      <tr>
+        <td></td>
+        <td>
+          <span
+            class="material-symbols-outlined"
+            style="color: white; font-size: 1rem; vertical-align: middle">
+            functions
+          </span>
+          <span class="ml-2">Combined</span>
+        </td>
+        <td class="whitespace-nowrap">
+          {{ car.technicalSpecification!.emissions.combined }} g/100km
+        </td>
+      </tr>
+
+      <tr class="sm:max-md:relative">
+        <td></td>
+        <td></td>
+        <td class="flex justify-end sm:max-md:h-14">
+          <button
+            class="mt-4 mb-2 h-8 px-3 bg-primary text-xl text-white rounded-lg shadow-md shadow-gray-800 sm:max-md:absolute sm:max-md:right-8"
+            [disabled]="loading"
+            [ngClass]="loading ? 'bg-gray-600' : ''"
+            (click)="book()">
+            Book
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

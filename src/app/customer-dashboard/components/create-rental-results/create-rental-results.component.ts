@@ -1,6 +1,6 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { AvailableCar } from 'src/app/_models/rental-data';
-import paths from 'src/assets/brands/brands.json';
+import logoPath from 'src/assets/brands/brands.json';
 
 @Component({
   selector: 'app-create-rental-results',
@@ -13,7 +13,10 @@ export class CreateRentalResultsComponent implements OnChanges {
   // the index of the first car within fullResults that is shown on the current page
   private currentIndex: number = 0;
 
-  currentPage: AvailableCar[] = [];
+  currentPage: {
+    car: AvailableCar;
+    expanded: boolean;
+  }[] = [];
   hasLeft: boolean = false;
   hasRight: boolean = false;
 
@@ -31,14 +34,13 @@ export class CreateRentalResultsComponent implements OnChanges {
     this.hasLeft = this.currentIndex > 0;
     this.hasRight =
       this.currentIndex + this.entriesPerPage < this.fullResults.length;
-    this.currentPage = this.fullResults.slice(
-      this.currentIndex,
-      this.currentIndex + this.entriesPerPage
-    );
+    this.currentPage = this.fullResults
+      .slice(this.currentIndex, this.currentIndex + this.entriesPerPage)
+      .map((car) => ({ car: car, expanded: false }));
   }
 
-  getPath(car: AvailableCar) {
-    return paths[car.brand];
+  getLogoPath(car: AvailableCar) {
+    return logoPath[car.brand];
   }
 
   paginate(direction: -1 | 1) {
