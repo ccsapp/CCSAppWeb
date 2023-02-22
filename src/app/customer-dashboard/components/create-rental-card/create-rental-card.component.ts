@@ -2,6 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { DeviceDetectorService } from 'ngx-device-detector';
+import { RentalBookingService } from 'src/app/services/rental-booking.service';
 import { RentalDataService } from 'src/app/services/rental-data.service';
 import { AvailableCar } from 'src/app/_models/rental-data';
 
@@ -29,11 +30,13 @@ export class CreateRentalCardComponent implements OnInit {
 
   constructor(
     private rentalData: RentalDataService,
+    private rentalBooking: RentalBookingService,
     private deviceService: DeviceDetectorService
   ) {}
 
   ngOnInit(): void {
     this.isFirefox = this.deviceService.browser === 'Firefox';
+    this.rentalBooking.bookingComplete$.subscribe(() => this.clearResults());
   }
 
   onSubmit(): void {
@@ -63,6 +66,8 @@ export class CreateRentalCardComponent implements OnInit {
       this.loading = false;
       return;
     }
+
+    this.rentalBooking.rentalPeriod = timePeriod;
 
     this.rentalData.getAvailableCars(timePeriod).subscribe({
       next: (data) => {

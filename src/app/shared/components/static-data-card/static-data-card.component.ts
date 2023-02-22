@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { capitalizeWord } from 'src/app/util';
+import { capitalizeWord, splitFuelCapacity } from 'src/app/util';
 import { DetailedCar } from 'src/app/_models/fleet-data';
 
 @Component({
@@ -16,24 +16,10 @@ export class StaticDataCardComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    this.splitFuelCapacity();
-  }
-
-  splitFuelCapacity() {
-    const capcaities = this.car.technicalSpecification.fuelCapacity.split(';');
-    if (capcaities.length === 2) {
-      this.fuelCapacityGasoline = capcaities[0].replace('L', '');
-      this.fuelCapacityElectric = capcaities[1].replace('kWh', '');
-      return;
-    }
-    if (capcaities[0].includes('L')) {
-      this.fuelCapacityGasoline = capcaities[0].replace('L', '');
-      return;
-    }
-    if (capcaities[0].includes('kWh')) {
-      this.fuelCapacityElectric = capcaities[0].replace('kWh', '');
-      return;
-    }
+    ({
+      fuelCapacityGasoline: this.fuelCapacityGasoline,
+      fuelCapacityElectric: this.fuelCapacityElectric,
+    } = splitFuelCapacity(this.car.technicalSpecification.fuelCapacity));
   }
 
   capitalizeWord(word: string) {
