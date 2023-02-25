@@ -1,10 +1,11 @@
 <div class="card flex justify-between items-center">
   <div class="flex gap-2 items-center">
     <div>
-      <img class="w-8 md:w-12" [src]="path" />
+      <img class="w-8 md:w-12" [src]="logoPath" />
     </div>
     <div>
-      <div class="text-white sm:text-xl md:text-2xl">
+      <div
+        class="text-white sm:text-xl md:text-2xl max-sm:w-64 md:w-48 lg:w-80 whitespace-nowrap overflow-hidden text-ellipsis">
         {{ car.brand }}, {{ car.model }}
       </div>
       <div class="text-white text-xs">
