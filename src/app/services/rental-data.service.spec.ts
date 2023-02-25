@@ -41,7 +41,7 @@ describe('RentalDataService', () => {
 
   const carRental1: Rental = {
     id: 'cpZ6IIwD',
-    active: true,
+    state: 'ACTIVE',
     rentalPeriod: {
       startDate: new Date(startDate),
       endDate: new Date(endDate),
@@ -55,7 +55,7 @@ describe('RentalDataService', () => {
 
   const carRental2: Rental = {
     id: 'lsnej8or',
-    active: true,
+    state: 'ACTIVE',
     rentalPeriod: {
       startDate: new Date('2021-01-21T17:32:28.000Z'),
       endDate: new Date('2021-01-21T17:32:28.000Z'),

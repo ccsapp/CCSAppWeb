@@ -1,0 +1,41 @@
+<div class="card flex justify-between items-center">
+  <div class="flex gap-2 items-center">
+    <div>
+      <img class="w-8 md:w-12" [src]="logoPath" />
+    </div>
+    <div>
+      <div
+        class="text-white sm:text-xl md:text-2xl max-sm:w-64 md:w-48 lg:w-80 whitespace-nowrap overflow-hidden text-ellipsis">
+        {{ rental.car.brand }}, {{ rental.car.model }}
+      </div>
+      <div class="text-white text-xs whitespace-nowrap pt-1">
+        <container-element [ngSwitch]="rental.state">
+          <span
+            *ngSwitchCase="'ACTIVE'"
+            class="bg-active sm:px-1.5 px-1 p-0.5 mr-1 rounded-lg">
+            Active</span
+          >
+          <span
+            *ngSwitchCase="'UPCOMING'"
+            class="bg-upcoming sm:px-1.5 p-0.5 mr-1 rounded-lg">
+            Upcoming</span
+          >
+          <span
+            *ngSwitchCase="'EXPIRED'"
+            class="bg-secondary sm:px-1.5 px-1 p-0.5 mr-1 rounded-lg">
+            Expired</span
+          >
+        </container-element>
+        {{ rental.rentalPeriod.startDate | date : "dd.MM.yyyy HH:mm" }}–{{
+          rental.rentalPeriod.endDate | date : "dd.MM.yyyy HH:mm"
+        }}
+      </div>
+    </div>
+  </div>
+
+  <div class="flex nowrap">
+    <a [routerLink]="['/dashboard', rental.id]">
+      <img src="assets/icons/info.svg" class="md:h-10 md:w-10 h-7 w-7" />
+    </a>
+  </div>
+</div>

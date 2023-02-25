@@ -13,6 +13,8 @@ module.exports = {
         modalsecondary: "#34363D",
         toastBg: "#E39116",
         sliderBg: "#FF9900",
+        active: "#60BA36",
+        upcoming: "#D38034",
       },
       fontFamily: {
         heading: ["Roboto Condensed", "Helvetica", "sans-serif"],

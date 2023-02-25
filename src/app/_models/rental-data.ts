@@ -31,7 +31,7 @@ export interface TrunkAccess {
 
 export interface Rental {
   id: string;
-  active: boolean;
+  state: 'ACTIVE' | 'EXPIRED' | 'UPCOMING';
   rentalPeriod: TimePeriod;
   car: Car;
   trunkToken?: TrunkAccess;

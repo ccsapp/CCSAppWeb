@@ -1,6 +1,6 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { AvailableCar } from 'src/app/_models/rental-data';
-import logoPath from 'src/assets/brands/brands.json';
+import logoPaths from 'src/assets/brands/brands.json';
 
 @Component({
   selector: 'app-create-rental-results',
@@ -40,7 +40,7 @@ export class CreateRentalResultsComponent implements OnChanges {
   }
 
   getLogoPath(car: AvailableCar) {
-    return logoPath[car.brand];
+    return logoPaths[car.brand];
   }
 
   paginate(direction: -1 | 1) {
