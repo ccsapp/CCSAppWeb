@@ -40,11 +40,10 @@ export class CreateRentalCardComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.results = undefined;
-    this.errorMessage = undefined;
     this.loading = true;
 
     if (!this.timePeriodForm.valid) {
+      this.results = undefined;
       this.errorMessage = 'Supply a time period first.';
       this.loading = false;
       return;
@@ -58,10 +57,15 @@ export class CreateRentalCardComponent implements OnInit {
       ),
     };
 
-    if (
-      timePeriod.startDate < new Date() ||
-      timePeriod.startDate >= timePeriod.endDate
-    ) {
+    if (timePeriod.startDate < new Date()) {
+      this.results = undefined;
+      this.errorMessage = 'The given time period begins in the past.';
+      this.loading = false;
+      return;
+    }
+
+    if (timePeriod.startDate >= timePeriod.endDate) {
+      this.results = undefined;
       this.errorMessage = 'The given time period is invalid.';
       this.loading = false;
       return;
@@ -71,10 +75,12 @@ export class CreateRentalCardComponent implements OnInit {
 
     this.rentalData.getAvailableCars(timePeriod).subscribe({
       next: (data) => {
+        this.errorMessage = undefined;
         this.results = data;
         this.loading = false;
       },
       error: (err: HttpErrorResponse) => {
+        this.results = undefined;
         console.log(err?.error?.message);
         this.errorMessage = 'Communication with the server failed.';
         this.loading = false;
