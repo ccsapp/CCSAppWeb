@@ -1,0 +1,31 @@
+<div *ngIf="rental" class="grid-layout max-w-5xl">
+  <div class="flex gap-4 flex-col">
+    <div class="card items-center text-white">
+      <div class="text-2xl mb-2">Rental Period</div>
+      <div class="text-white text-xs">
+        <container-element [ngSwitch]="rental.state">
+          <span
+            *ngSwitchCase="'ACTIVE'"
+            class="bg-active sm:px-1.5 px-1 p-0.5 sm:mr-1 rounded-lg">
+            Active</span
+          >
+          <span
+            *ngSwitchCase="'UPCOMING'"
+            class="bg-upcoming sm:px-1.5 px-1 p-0.5 sm:mr-1 -mr-0.5 rounded-lg"
+            >Upcoming</span
+          >
+          <span
+            *ngSwitchCase="'EXPIRED'"
+            class="bg-secondary sm:px-1.5 px-1 p-0.5 sm:mr-1 rounded-lg"
+            >Expired</span
+          >
+        </container-element>
+        {{ rental.rentalPeriod.startDate | date : "dd.MM.yyyy HH:mm" }}–{{
+          rental.rentalPeriod.endDate | date : "dd.MM.yyyy HH:mm"
+        }}
+      </div>
+    </div>
+    <app-dynamic-data-card [rental]="rental"></app-dynamic-data-card>
+  </div>
+  <app-static-data-card [car]="rental.car"></app-static-data-card>
+</div>

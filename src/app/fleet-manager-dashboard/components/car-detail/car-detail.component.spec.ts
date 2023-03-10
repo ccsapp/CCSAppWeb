@@ -89,7 +89,6 @@ describe('CarDetailComponent', () => {
         DyanmicDataCardStub,
       ],
       imports: [RouterTestingModule],
-
       providers: [{ provide: HttpClient, useValue: httpClientSpy }],
     }).compileComponents();
 

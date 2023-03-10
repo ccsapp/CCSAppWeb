@@ -41,7 +41,7 @@ describe('RentalDataService', () => {
 
   const carRental1: Rental = {
     id: 'cpZ6IIwD',
-    state: 'ACTIVE',
+    state: 'EXPIRED',
     rentalPeriod: {
       startDate: new Date(startDate),
       endDate: new Date(endDate),
