@@ -1,0 +1,126 @@
+<div *ngIf="rental.car.dynamicData" class="card items-center">
+  <div class="text-white text-2xl">About the Car</div>
+
+  <table class="text-white mt-2 text-sm sm:text-base">
+    <tr>
+      <td class="align-top pr-2">
+        <span
+          class="material-symbols-outlined"
+          style="color: white; font-size: 1.5rem; vertical-align: middle">
+          pin_drop
+        </span>
+      </td>
+      <td class="pr-4">Position (Latitude/Longitude)</td>
+      <td class="pl-1 align-top">
+        <a class="underline" [href]="locationLink" target="_blank">
+          {{ rental.car.dynamicData.position.latitude }},
+          {{ rental.car.dynamicData.position.longitude }}
+          <span
+            class="material-symbols-outlined"
+            style="color: white; font-size: 1rem; vertical-align: middle">
+            open_in_new
+          </span>
+        </a>
+      </td>
+    </tr>
+
+    <tr>
+      <td class="pr-2">
+        <span
+          class="material-symbols-outlined"
+          style="color: white; font-size: 1.5rem; vertical-align: middle">
+          speed
+        </span>
+      </td>
+      <td class="mr-4">Fuel Level</td>
+      <td class="pl-1">{{ rental.car.dynamicData.fuelLevelPercentage }} %</td>
+    </tr>
+
+    <tr>
+      <td class="pr-2">
+        <span
+          class="material-symbols-outlined"
+          style="color: white; font-size: 1.5rem; vertical-align: middle">
+          power_settings_new
+        </span>
+      </td>
+      <td class="mr-4">Engine State</td>
+      <td>
+        <span
+          *ngIf="rental.car.dynamicData.engineState === 'ON'"
+          class="material-symbols-outlined"
+          style="color: white; font-size: 1.5rem; vertical-align: middle">
+          toggle_on
+        </span>
+        <span
+          *ngIf="rental.car.dynamicData.engineState === 'OFF'"
+          class="material-symbols-outlined"
+          style="color: white; font-size: 1.5rem; vertical-align: middle">
+          toggle_off
+        </span>
+
+        {{ capitalizeWord(rental.car.dynamicData.engineState) }}
+      </td>
+    </tr>
+
+    <tr>
+      <td class="pr-2">
+        <span
+          class="material-symbols-outlined"
+          style="color: white; font-size: 1.5rem; vertical-align: middle">
+          key
+        </span>
+      </td>
+      <td class="mr-4">Doors Lock State</td>
+      <td>
+        <span
+          *ngIf="rental.car.dynamicData.doorsLockState === 'LOCKED'"
+          class="material-symbols-outlined mb-1"
+          style="color: white; font-size: 1.5rem; vertical-align: middle">
+          lock
+        </span>
+        <span
+          *ngIf="rental.car.dynamicData.doorsLockState === 'UNLOCKED'"
+          class="material-symbols-outlined mb-1"
+          style="color: white; font-size: 1.5rem; vertical-align: middle">
+          lock_open
+        </span>
+
+        {{ capitalizeWord(rental.car.dynamicData.doorsLockState) }}
+      </td>
+    </tr>
+
+    <tr>
+      <td class="pr-2">
+        <span
+          class="material-symbols-outlined pt-1"
+          style="color: white; font-size: 1.5rem; vertical-align: middle">
+          lock
+        </span>
+      </td>
+      <td class="mr-4 pt-1">Trunk Lock State</td>
+      <td class="pt-1">
+        <button
+          [disabled]="loading"
+          [ngClass]="loading ? 'bg-gray-600' : ''"
+          (click)="toggleTrunkLockState()"
+          class="bg-primary rounded-lg shadow-md shadow-gray-800 -ml-1 pl-1 pr-2 pb-0.5 pt-1">
+          <span
+            *ngIf="rental.car.dynamicData.trunkLockState === 'LOCKED'"
+            class="material-symbols-outlined mb-1"
+            style="color: white; font-size: 1.5rem; vertical-align: middle">
+            lock
+          </span>
+          <span
+            *ngIf="rental.car.dynamicData.trunkLockState === 'UNLOCKED'"
+            class="material-symbols-outlined mb-1"
+            style="color: white; font-size: 1.5rem; vertical-align: middle">
+            lock_open
+          </span>
+
+          {{ capitalizeWord(rental.car.dynamicData.trunkLockState) }}
+        </button>
+      </td>
+    </tr>
+  </table>
+</div>
