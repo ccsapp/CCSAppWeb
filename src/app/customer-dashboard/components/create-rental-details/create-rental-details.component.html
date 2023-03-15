@@ -265,3 +265,9 @@
     </tbody>
   </table>
 </div>
+<div
+  *ngIf="!car && errorMessage"
+  class="flex items-center justify-center h-full">
+  <img src="assets/attention.svg" class="sm:w-8 sm:h-8 sm:mx-2 w-5 h-5 mx-1" />
+  <span class="sm:text-2xl text-warning">{{ errorMessage }}</span>
+</div>
