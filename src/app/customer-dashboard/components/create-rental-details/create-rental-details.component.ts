@@ -19,6 +19,7 @@ export class CreateRentalDetailsComponent implements OnInit {
   fuelCapacityElectric: string = '';
 
   loading: boolean = false;
+  errorMessage: string | undefined;
 
   constructor(
     private rentalData: RentalDataService,
@@ -27,12 +28,22 @@ export class CreateRentalDetailsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.rentalData.getCar(this.vin).subscribe((car) => {
-      this.car = car;
-      ({
-        fuelCapacityGasoline: this.fuelCapacityGasoline,
-        fuelCapacityElectric: this.fuelCapacityElectric,
-      } = splitFuelCapacity(car.technicalSpecification!.fuelCapacity));
+    this.rentalData.getCar(this.vin).subscribe({
+      next: (car) => {
+        this.car = car;
+        ({
+          fuelCapacityGasoline: this.fuelCapacityGasoline,
+          fuelCapacityElectric: this.fuelCapacityElectric,
+        } = splitFuelCapacity(car.technicalSpecification!.fuelCapacity));
+      },
+      error: (err: HttpErrorResponse) => {
+        if (err?.status == HttpStatusCode.NotFound) {
+          this.errorMessage = 'The car could no longer be found.';
+          return;
+        }
+        console.log(err?.error?.message);
+        this.errorMessage = 'Error gathering car info.';
+      },
     });
 
     this.rentalBooking.currentlyBooking$.subscribe(
