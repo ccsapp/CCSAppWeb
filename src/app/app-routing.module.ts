@@ -4,6 +4,7 @@ import { RentalDetailComponent } from './customer-dashboard/components/rental-de
 import { RentalsOverviewComponent } from './customer-dashboard/components/rentals-overview/rentals-overview.component';
 import { CarDetailComponent } from './fleet-manager-dashboard/components/car-detail/car-detail.component';
 import { FleetOverviewComponent } from './fleet-manager-dashboard/components/fleet-overview/fleet-overview.component';
+import { NotFoundComponent } from './shared/components/not-found/not-found.component';
 
 const routes: Routes = [
   { path: '', component: FleetOverviewComponent },
@@ -11,6 +12,7 @@ const routes: Routes = [
   { path: 'dashboard/:vin', component: CarDetailComponent },
   { path: 'rentals', component: RentalsOverviewComponent },
   { path: 'rentals/:id', component: RentalDetailComponent },
+  { path: '**', component: NotFoundComponent },
 ];
 
 @NgModule({
