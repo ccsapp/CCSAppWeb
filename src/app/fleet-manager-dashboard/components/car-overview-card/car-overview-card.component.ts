@@ -38,7 +38,14 @@ export class CarOverviewCardComponent implements OnInit {
         this.toastService.addToast({
           message: `Removed ${this.car?.brand}, ${this.car?.model}`,
           action: () => {
-            this.fleetData.addCar(vin).subscribe();
+            this.fleetData.addCar(vin).subscribe({
+              error: (err: HttpErrorResponse) => {
+                this.toastService.addToast({
+                  message: 'Error undoing car removal.',
+                });
+                console.log(err?.error?.message);
+              },
+            });
           },
         });
       },
