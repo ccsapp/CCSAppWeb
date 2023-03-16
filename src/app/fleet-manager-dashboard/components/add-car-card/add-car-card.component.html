@@ -37,9 +37,9 @@
   <!-- after a click on "Add", if 'vinInput' is valid submit is called otherwise 'vinField' is focused -->
   <button
     type="button"
-    class="sm:mt-0 mt-4 sm:justify-start justify-self-center bg-primary text-xl pr-3 text-white rounded-lg shadow-md shadow-gray-800"
+    class="sm:mt-0 mt-4 sm:justify-start justify-self-center text-xl pr-3 text-white rounded-lg shadow-md shadow-gray-800"
     [disabled]="loading"
-    [ngClass]="loading ? 'bg-gray-600' : ''"
+    [ngClass]="loading ? 'bg-gray-600' : 'bg-primary'"
     (click)="onSubmit()">
     <span
       class="material-symbols-outlined"

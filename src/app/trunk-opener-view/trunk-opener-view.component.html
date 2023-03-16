@@ -1,0 +1,37 @@
+<div class="justify-center flex">
+  <div class="card text-white text-2xl text-center" *ngIf="loaded">
+    <div
+      *ngIf="lockState; else error"
+      class="ml-5 mr-5 -mb-2 -mt-2 max-sm:grid">
+      <span class="material-symbols-outlined text-6xl align-middle mb-2">
+        directions_car
+      </span>
+      The trunk is currently {{ lockState.toLowerCase() }}.
+      <span *ngIf="lockState === 'LOCKED'" style="margin-left: 0.3rem"></span>
+      <button
+        (click)="toggleTrunkLockState()"
+        [disabled]="loading"
+        [ngClass]="loading ? 'bg-gray-600' : 'bg-primary'"
+        class="rounded-lg shadow-md shadow-gray-800 pl-1 pr-2 pb-0.5 pt-1 sm:ml-6 max-sm:mt-4 max-sm:mb-4 w-fit justify-self-center">
+        <div *ngIf="lockState === 'LOCKED'">
+          <span class="material-symbols-outlined align-middle mb-1.5">
+            lock_open
+          </span>
+          Unlock
+        </div>
+        <div *ngIf="lockState === 'UNLOCKED'">
+          <span class="material-symbols-outlined align-middle mb-1.5">
+            lock
+          </span>
+          Lock
+        </div>
+      </button>
+    </div>
+  </div>
+</div>
+
+<ng-template #error>
+  <div class="text-warning ml-5 mr-5">
+    {{ errorMessage }}
+  </div>
+</ng-template>

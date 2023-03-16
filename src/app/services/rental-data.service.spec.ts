@@ -520,7 +520,7 @@ describe('RentalDataService', () => {
           .flush(null, error);
       });
 
-      expectObservable(service.dataChanged).toBe('a-', { a: null });
+      expectObservable(service.dataChanged).toBe('aa', { a: null });
 
       expectObservable(
         service.setTrunkLockState(carWithTechnicalSpecification.vin, 'LOCKED')
@@ -530,11 +530,11 @@ describe('RentalDataService', () => {
     httpTestingController.verify();
   }
 
-  it('setTrunkLockState does nothing on failure as Customer', () => {
+  it('setTrunkLockState reloads on failure as Customer', () => {
     testSetTrunkLockStateFailure(true);
   });
 
-  it('setTrunkLockState does nothing on failure as Trunk Opener', () => {
+  it('setTrunkLockState reloads on failure as Trunk Opener', () => {
     testSetTrunkLockStateFailure(false);
   });
 
