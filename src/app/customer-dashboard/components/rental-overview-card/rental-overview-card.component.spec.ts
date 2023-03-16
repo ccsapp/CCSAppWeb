@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Rental } from 'src/app/_models/rental-data';
 
 import { RentalOverviewCardComponent } from './rental-overview-card.component';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('RentalOverviewCardComponent', () => {
   let component: RentalOverviewCardComponent;
@@ -24,6 +25,7 @@ describe('RentalOverviewCardComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [RentalOverviewCardComponent],
+      imports: [RouterTestingModule.withRoutes([])],
     }).compileComponents();
 
     fixture = TestBed.createComponent(RentalOverviewCardComponent);
