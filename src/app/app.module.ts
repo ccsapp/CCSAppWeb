@@ -8,6 +8,7 @@ import { CustomerDashboardModule } from './customer-dashboard/customer-dashboard
 import { FleetManagerDashboardModule } from './fleet-manager-dashboard/fleet-manager-dashboard.module';
 import { SharedModule } from './shared/shared.module';
 import { SCHEDULER } from './util';
+import { TrunkOpenerViewModule } from './trunk-opener-view/trunk-opener-view.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -17,6 +18,7 @@ import { SCHEDULER } from './util';
     AppRoutingModule,
     FleetManagerDashboardModule,
     CustomerDashboardModule,
+    TrunkOpenerViewModule,
     SharedModule,
   ],
   providers: [{ provide: SCHEDULER, useValue: asyncScheduler }],

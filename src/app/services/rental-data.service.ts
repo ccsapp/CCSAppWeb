@@ -1,6 +1,6 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, map, Observable, tap } from 'rxjs';
+import { BehaviorSubject, catchError, map, Observable, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import {
   AvailableCar,
@@ -110,7 +110,15 @@ export class RentalDataService {
           },
         }
       )
-      .pipe(tap(() => this.dataChanged$.next(null)));
+      .pipe(
+        tap(() => this.dataChanged$.next(null)),
+        // trigger a data update regardless if the request was successful because the permission
+        // might have expired
+        catchError((err) => {
+          this.dataChanged$.next(null);
+          throw err;
+        })
+      );
   }
 
   /**

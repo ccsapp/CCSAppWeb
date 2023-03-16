@@ -58,9 +58,9 @@
       <div class="sm:row-span-2 md:row-span-1">
         <button
           type="button"
-          class="h-8 mt-1 pr-3 bg-primary text-xl text-white rounded-lg shadow-md shadow-gray-800"
+          class="h-8 mt-1 pr-3 text-xl text-white rounded-lg shadow-md shadow-gray-800"
           [disabled]="loading"
-          [ngClass]="loading ? 'bg-gray-600' : ''"
+          [ngClass]="loading ? 'bg-gray-600' : 'bg-primary'"
           (click)="onSubmit()">
           <span
             class="material-symbols-outlined pl-2"
