@@ -1,5 +1,6 @@
 import { HttpErrorResponse, HttpStatusCode } from '@angular/common/http';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { RentalBookingService } from 'src/app/services/rental-booking.service';
 import { RentalDataService } from 'src/app/services/rental-data.service';
 import { ToastService } from 'src/app/services/toast.service';
@@ -11,7 +12,7 @@ import { Car } from 'src/app/_models/rental-data';
   templateUrl: './create-rental-details.component.html',
   styleUrls: ['./create-rental-details.component.css'],
 })
-export class CreateRentalDetailsComponent implements OnInit {
+export class CreateRentalDetailsComponent implements OnInit, OnDestroy {
   @Input() vin!: string;
 
   car?: Car;
@@ -20,6 +21,8 @@ export class CreateRentalDetailsComponent implements OnInit {
 
   loading: boolean = false;
   errorMessage: string | undefined;
+
+  private bookingSubscription?: Subscription;
 
   constructor(
     private rentalData: RentalDataService,
@@ -46,9 +49,13 @@ export class CreateRentalDetailsComponent implements OnInit {
       },
     });
 
-    this.rentalBooking.currentlyBooking$.subscribe(
+    this.bookingSubscription = this.rentalBooking.currentlyBooking$.subscribe(
       (isBooking) => (this.loading = isBooking)
     );
+  }
+
+  ngOnDestroy(): void {
+    if (this.bookingSubscription) this.bookingSubscription.unsubscribe();
   }
 
   capitalizeWord(word: string) {

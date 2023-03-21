@@ -21,6 +21,7 @@ export class CarDetailComponent implements OnInit {
   car!: DetailedCar;
 
   ngOnInit(): void {
+    // this subscription is automatically unsubscribed when the route is destroyed
     this.route.params.subscribe((params) => {
       const vin = params['vin'];
       this.fleetData.getCarDetailed(vin).subscribe({

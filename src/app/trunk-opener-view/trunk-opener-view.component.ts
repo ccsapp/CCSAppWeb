@@ -1,18 +1,18 @@
 import { HttpStatusCode } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Subscription, switchMap } from 'rxjs';
 import { RentalDataService } from '../services/rental-data.service';
 import { TitleService } from '../services/title.service';
-import { LockState } from '../_models/rental-data';
-import { switchMap } from 'rxjs';
 import { ToastService } from '../services/toast.service';
+import { LockState } from '../_models/rental-data';
 
 @Component({
   selector: 'app-trunk-opener-view',
   templateUrl: './trunk-opener-view.component.html',
   styleUrls: ['./trunk-opener-view.component.css'],
 })
-export class TrunkOpenerViewComponent implements OnInit {
+export class TrunkOpenerViewComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private rentalData: RentalDataService,
@@ -31,6 +31,8 @@ export class TrunkOpenerViewComponent implements OnInit {
   vin!: string;
   private title = 'Change Trunk Lock State';
 
+  private dataSubscription?: Subscription;
+
   ngOnInit() {
     let token = this.route.snapshot.queryParams['token'];
     if (!token || !new RegExp('^[a-zA-Z0-9]{24}$').test(token)) {
@@ -40,7 +42,7 @@ export class TrunkOpenerViewComponent implements OnInit {
     }
     this.vin = this.route.snapshot.params['vin'];
     this.rentalData.trunkAccessToken = token;
-    this.rentalData.dataChanged
+    this.dataSubscription = this.rentalData.dataChanged
       .pipe(switchMap(() => this.rentalData.getTrunkLockState(this.vin)))
       .subscribe({
         next: (lockState) => {
@@ -64,6 +66,10 @@ export class TrunkOpenerViewComponent implements OnInit {
           this.loading = false;
         },
       });
+  }
+
+  ngOnDestroy(): void {
+    if (this.dataSubscription) this.dataSubscription.unsubscribe();
   }
 
   toggleTrunkLockState() {

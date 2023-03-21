@@ -1,5 +1,6 @@
 import { animate, style, transition, trigger } from '@angular/animations';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { Toast, ToastService } from 'src/app/services/toast.service';
 
 @Component({
@@ -26,15 +27,21 @@ import { Toast, ToastService } from 'src/app/services/toast.service';
   templateUrl: './toast.component.html',
   styleUrls: ['./toast.component.css'],
 })
-export class ToastComponent implements OnInit {
+export class ToastComponent implements OnInit, OnDestroy {
   constructor(private toastService: ToastService) {}
 
   toasts!: Toast[];
 
+  private toastSubscription?: Subscription;
+
   ngOnInit(): void {
-    this.toastService.toast$.subscribe((toasts) => {
+    this.toastSubscription = this.toastService.toast$.subscribe((toasts) => {
       this.toasts = toasts;
     });
+  }
+
+  ngOnDestroy(): void {
+    if (this.toastSubscription) this.toastSubscription.unsubscribe();
   }
 
   handleClick(toast: Toast) {
