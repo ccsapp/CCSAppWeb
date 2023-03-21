@@ -1,7 +1,7 @@
 <app-create-rental-card
   class="sm:m-8 my-4 m-2 flex justify-center"></app-create-rental-card>
 
-<div *ngIf="rentals$ | async as rentals" class="grid-layout max-w-7xl">
+<div *ngIf="rentals" class="grid-layout max-w-7xl">
   <div *ngFor="let rental of rentals">
     <app-rental-overview-card [rental]="rental"></app-rental-overview-card>
   </div>
