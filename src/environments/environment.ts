@@ -3,6 +3,7 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
+  BASE_URL: 'http://localhost:4200',
   production: false,
   FLEETM_API_URL: 'https://cm-p-fleetm.cloud.iai.kit.edu',
   RENTALM_API_URL: 'https://cm-rentalmgmt.cloud.iai.kit.edu',

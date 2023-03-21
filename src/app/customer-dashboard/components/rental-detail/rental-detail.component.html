@@ -26,6 +26,11 @@
       </div>
     </div>
     <app-dynamic-data-card [rental]="rental"></app-dynamic-data-card>
+    <app-trunk-access-card
+      *ngIf="rental.state === 'ACTIVE'"
+      [rental]="rental"
+      (updateTrunkAccess)="updateTrunkAccess($event)">
+    </app-trunk-access-card>
   </div>
   <app-static-data-card [car]="rental.car"></app-static-data-card>
 </div>
