@@ -1,0 +1,80 @@
+<div>
+  <form [formGroup]="timePeriodForm">
+    <table>
+      <tr formGroupName="startDate">
+        <td class="pr-2 pt-2 w-7/12">
+          <p class="font-bold text-white">Start Date</p>
+          <input
+            class="h-8 py-0.5 px-2 w-full rounded-lg text-black form-control shadow-md shadow-gray-800"
+            type="date"
+            [min]="currentDate()"
+            max="2100-01-01"
+            formControlName="date" />
+        </td>
+        <td class="pt-8">
+          <input
+            class="h-8 py-0.5 px-2 min-w-[8rem] w-full rounded-lg text-black form-control shadow-md shadow-gray-800"
+            formControlName="time"
+            placeholder="15:00"
+            type="time" />
+          <span
+            *ngIf="isFirefox"
+            class="material-symbols-outlined -ml-10 inline-flex items-center pointer-events-none"
+            style="font-size: 1.5rem; vertical-align: middle">
+            schedule
+          </span>
+        </td>
+      </tr>
+
+      <tr formGroupName="endDate">
+        <td class="pr-2 pt-2 w-7/12">
+          <p class="font-bold text-white">End Date</p>
+          <input
+            class="h-8 p-0.5 w-full px-2 rounded-lg text-black form-control shadow-md shadow-gray-800"
+            type="date"
+            [min]="currentDate()"
+            max="2100-01-01"
+            formControlName="date" />
+        </td>
+        <td class="pt-8">
+          <input
+            class="h-8 py-0.5 w-full min-w-[8rem] px-2 rounded-lg text-black form-control shadow-md shadow-gray-800"
+            formControlName="time"
+            placeholder="15:00"
+            type="time" />
+          <span
+            *ngIf="isFirefox"
+            class="material-symbols-outlined -ml-10 inline-flex items-center pointer-events-none"
+            style="font-size: 1.5rem; vertical-align: middle">
+            schedule
+          </span>
+        </td>
+      </tr>
+
+      <tr>
+        <td class="pt-2">
+          <button
+            *ngIf="isReplace"
+            type="button"
+            class="w-fit self-end h-8 mt-1 px-2 bg-secondary text-white rounded-lg shadow-md shadow-gray-800"
+            (click)="cancel()">
+            Cancel
+          </button>
+        </td>
+        <td class="pt-2 flex justify-end">
+          <button
+            type="button"
+            class="w-32 self-end h-8 mt-1 text-white rounded-lg shadow-md shadow-gray-800"
+            [disabled]="loading"
+            [ngClass]="loading ? 'bg-gray-600' : 'bg-primary'"
+            (click)="onSubmit()">
+            {{ isReplace ? "Replace" : "Create" }} Token
+          </button>
+        </td>
+      </tr>
+    </table>
+  </form>
+  <p *ngIf="errorMessage" class="text-sm text-warning mt-2">
+    {{ errorMessage }}
+  </p>
+</div>

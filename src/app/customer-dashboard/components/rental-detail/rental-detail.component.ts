@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Subscription, switchMap } from 'rxjs';
 import { RentalDataService } from 'src/app/services/rental-data.service';
 import { TitleService } from 'src/app/services/title.service';
-import { Rental } from 'src/app/_models/rental-data';
+import { Rental, TrunkAccess } from 'src/app/_models/rental-data';
 import paths from 'src/assets/brands/brands.json';
 
 @Component({
@@ -49,6 +49,10 @@ export class RentalDetailComponent implements OnInit, OnDestroy {
           });
         },
       });
+  }
+
+  updateTrunkAccess(token: TrunkAccess) {
+    this.rental.token = token;
   }
 
   ngOnDestroy(): void {
