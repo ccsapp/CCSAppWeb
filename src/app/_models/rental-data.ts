@@ -34,7 +34,7 @@ export interface Rental {
   state: 'ACTIVE' | 'EXPIRED' | 'UPCOMING';
   rentalPeriod: TimePeriod;
   car: Car;
-  trunkToken?: TrunkAccess;
+  token?: TrunkAccess;
 }
 
 export type LockState = 'LOCKED' | 'UNLOCKED';

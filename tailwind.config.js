@@ -26,6 +26,10 @@ module.exports = {
       gridTemplateColumns: {
         "create-rental": "repeat(2, 1fr) 5.75rem",
       },
+      // add custom breakpoint between sm and md
+      screens: {
+        "sm-md": "475px",
+      },
     },
   },
   plugins: [],

@@ -1,0 +1,35 @@
+<div *ngIf="rental" class="card">
+  <div class="text-2xl mb-1">Grant Trunk Access</div>
+  <ng-container *ngIf="rental.token && !isReplace; else trunkAccessForm">
+    <div class="flex gap-2 max-sm:flex-wrap md:flex-wrap">
+      <div class="relative flex-1">
+        <input
+          readonly
+          class="w-full p-1 pr-8 rounded-lg text-modalbg form-control shadow-md shadow-gray-800"
+          [value]="token" />
+        <img
+          (click)="copyToken()"
+          src="/assets/icons/content_copy.svg"
+          class="absolute w-6 right-1 top-1" />
+      </div>
+      <button
+        type="button"
+        (click)="activateReplace()"
+        class="flex-1 flex-grow-0 h-8 whitespace-nowrap px-2 bg-primary text-white rounded-lg shadow-md shadow-gray-800">
+        Replace Token
+      </button>
+    </div>
+    <div class="mt-1">
+      Valid from
+      {{ rental.token.validityPeriod.startDate | date : "dd.MM.yyyy HH:mm" }} to
+      {{ rental.token.validityPeriod.endDate | date : "dd.MM.yyyy HH:mm" }}
+    </div>
+  </ng-container>
+  <ng-template #trunkAccessForm>
+    <app-trunk-access-form
+      [rentalId]="rental.id"
+      [isReplace]="isReplace"
+      (updateTrunkAccess)="updateTrunkAccessEvent($event)">
+    </app-trunk-access-form>
+  </ng-template>
+</div>
