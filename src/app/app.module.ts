@@ -1,7 +1,9 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { OAuthModule } from 'angular-oauth2-oidc';
 import { asyncScheduler } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CustomerDashboardModule } from './customer-dashboard/customer-dashboard.module';
@@ -15,6 +17,12 @@ import { TrunkOpenerViewModule } from './trunk-opener-view/trunk-opener-view.mod
   imports: [
     BrowserModule,
     HttpClientModule,
+    OAuthModule.forRoot({
+      resourceServer: {
+        allowedUrls: [environment.FLEETM_API_URL, environment.RENTALM_API_URL],
+        sendAccessToken: true,
+      },
+    }),
     AppRoutingModule,
     FleetManagerDashboardModule,
     CustomerDashboardModule,
