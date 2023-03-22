@@ -1,7 +1,8 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { DeviceDetectorService } from 'ngx-device-detector';
+import { Subscription } from 'rxjs';
 import { RentalBookingService } from 'src/app/services/rental-booking.service';
 import { RentalDataService } from 'src/app/services/rental-data.service';
 import { AvailableCar } from 'src/app/_models/rental-data';
@@ -11,11 +12,13 @@ import { AvailableCar } from 'src/app/_models/rental-data';
   templateUrl: './create-rental-card.component.html',
   styleUrls: ['./create-rental-card.component.css'],
 })
-export class CreateRentalCardComponent implements OnInit {
+export class CreateRentalCardComponent implements OnInit, OnDestroy {
   results?: AvailableCar[];
   errorMessage?: string;
   loading: boolean = false;
   isFirefox = false;
+
+  private bookingSubscription?: Subscription;
 
   timePeriodForm = new FormGroup({
     startDate: new FormGroup({
@@ -36,7 +39,13 @@ export class CreateRentalCardComponent implements OnInit {
 
   ngOnInit(): void {
     this.isFirefox = this.deviceService.browser === 'Firefox';
-    this.rentalBooking.bookingComplete$.subscribe(() => this.clearResults());
+    this.bookingSubscription = this.rentalBooking.bookingComplete$.subscribe(
+      () => this.clearResults()
+    );
+  }
+
+  ngOnDestroy(): void {
+    if (this.bookingSubscription) this.bookingSubscription.unsubscribe();
   }
 
   onSubmit(): void {
