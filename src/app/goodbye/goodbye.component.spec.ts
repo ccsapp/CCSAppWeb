@@ -1,11 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { OAuthService } from 'angular-oauth2-oidc';
 
-import { NavbarComponent } from './navbar.component';
+import { GoodbyeComponent } from './goodbye.component';
 
-describe('NavbarComponent', () => {
-  let component: NavbarComponent;
-  let fixture: ComponentFixture<NavbarComponent>;
+describe('GoodbyeComponent', () => {
+  let component: GoodbyeComponent;
+  let fixture: ComponentFixture<GoodbyeComponent>;
   let oauthSpy: jasmine.SpyObj<OAuthService>;
 
   beforeEach(async () => {
@@ -23,11 +23,11 @@ describe('NavbarComponent', () => {
     );
 
     await TestBed.configureTestingModule({
-      declarations: [NavbarComponent],
+      declarations: [GoodbyeComponent],
       providers: [{ provide: OAuthService, useValue: oauthSpy }],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(NavbarComponent);
+    fixture = TestBed.createComponent(GoodbyeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

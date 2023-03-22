@@ -17,8 +17,7 @@ import {
 export class RentalDataService {
   private API_URL = environment.RENTALM_API_URL;
   private dataChanged$ = new BehaviorSubject(null);
-  //will be removed and replaced with a proper authentication mechanism later
-  private CUSTOMER_ID = environment.CUSTOMER_ID;
+  public customerId?: string;
   public trunkAccessToken?: string;
 
   constructor(private http: HttpClient) {}
@@ -60,7 +59,7 @@ export class RentalDataService {
       .post<null>(`${this.API_URL}/cars/${vin}/rentals`, rentalPeriod, {
         observe: 'response',
         params: {
-          customerId: this.CUSTOMER_ID,
+          customerId: this.customerId!,
         },
       })
       .pipe(tap(() => this.dataChanged$.next(null)));
@@ -96,7 +95,7 @@ export class RentalDataService {
           trunkAccessToken: this.trunkAccessToken,
         }
       : {
-          customerId: this.CUSTOMER_ID,
+          customerId: this.customerId!,
         };
 
     return this.http
@@ -127,7 +126,7 @@ export class RentalDataService {
    */
   getOverview(): Observable<Rental[]> {
     return this.http.get<Rental[]>(`${this.API_URL}/rentals`, {
-      params: { customerId: this.CUSTOMER_ID },
+      params: { customerId: this.customerId! },
     });
   }
 
