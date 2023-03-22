@@ -24,6 +24,14 @@
     </div>
   </div>
   <!-- this pseudo element is responsible for centering the title -->
-  <div class="flex-1"></div>
+  <div class="flex-1 flex justify-end">
+    <button *ngIf="loggedIn$ | async" (click)="logout()">
+      <span
+        class="material-symbols-outlined p-2"
+        style="color: white; font-size: 2.25rem; vertical-align: middle">
+        logout
+      </span>
+    </button>
+  </div>
 </div>
 <div class="h-1 bg-primary mb-6"></div>

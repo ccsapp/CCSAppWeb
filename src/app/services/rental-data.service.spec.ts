@@ -26,6 +26,8 @@ describe('RentalDataService', () => {
   const endDate = '2017-07-21T17:32:28.000Z';
   const rentalId = 'rZ6IIwcD';
 
+  const customerId = 'customer@example.com';
+
   const availableCar1: AvailableCar = {
     vin: 'WVWAA71K08W201031',
     brand: 'Audi',
@@ -239,9 +241,10 @@ describe('RentalDataService', () => {
   });
 
   it('createRental works (with reload)', () => {
+    service.customerId = customerId;
     const url =
       fleetBaseLink +
-      `/cars/${carWithTechnicalSpecification.vin}/rentals?customerId=${environment.CUSTOMER_ID}`;
+      `/cars/${carWithTechnicalSpecification.vin}/rentals?customerId=${customerId}`;
 
     const response = new HttpResponse({
       status: 201,
@@ -257,8 +260,7 @@ describe('RentalDataService', () => {
           // get and cache the matched requests to the given route b/c there are multiple ones
           reqs = httpTestingController.match({
             method: 'GET',
-            url:
-              fleetBaseLink + `/rentals?customerId=${environment.CUSTOMER_ID}`,
+            url: fleetBaseLink + `/rentals?customerId=${customerId}`,
           });
 
           expect(reqs.length).toBe(2);
@@ -304,9 +306,10 @@ describe('RentalDataService', () => {
   });
 
   it('createRental returns error on failure', () => {
+    service.customerId = customerId;
     const url =
       fleetBaseLink +
-      `/cars/${carWithTechnicalSpecification.vin}/rentals?customerId=${environment.CUSTOMER_ID}`;
+      `/cars/${carWithTechnicalSpecification.vin}/rentals?customerId=${customerId}`;
 
     const error: HttpErrorResponse = new HttpErrorResponse({
       status: 404,
@@ -394,6 +397,7 @@ describe('RentalDataService', () => {
   });
 
   function testSetTrunkLockStateSuccess(isCustomer: boolean) {
+    service.customerId = customerId;
     let url: string;
     if (!isCustomer) {
       service.trunkAccessToken = 'bumrLuCMbumrLuCMbumrLuCM';
@@ -403,7 +407,7 @@ describe('RentalDataService', () => {
     } else {
       url =
         fleetBaseLink +
-        `/cars/${carWithTechnicalSpecification.vin}/trunk?customerId=${environment.CUSTOMER_ID}`;
+        `/cars/${carWithTechnicalSpecification.vin}/trunk?customerId=${customerId}`;
     }
 
     const rentalId = 'rZ6IIwcD';
@@ -495,6 +499,7 @@ describe('RentalDataService', () => {
   });
 
   function testSetTrunkLockStateFailure(isCustomer: boolean) {
+    service.customerId = customerId;
     let url: string;
     if (!isCustomer) {
       service.trunkAccessToken = 'bumrLuCMbumrLuCMbumrLuCM';
@@ -504,7 +509,7 @@ describe('RentalDataService', () => {
     } else {
       url =
         fleetBaseLink +
-        `/cars/${carWithTechnicalSpecification.vin}/trunk?customerId=${environment.CUSTOMER_ID}`;
+        `/cars/${carWithTechnicalSpecification.vin}/trunk?customerId=${customerId}`;
     }
 
     const error: HttpErrorResponse = new HttpErrorResponse({
@@ -539,8 +544,8 @@ describe('RentalDataService', () => {
   });
 
   it('getOverview returns available cars on success', () => {
-    const url =
-      fleetBaseLink + `/rentals?customerId=${environment.CUSTOMER_ID}`;
+    service.customerId = customerId;
+    const url = fleetBaseLink + `/rentals?customerId=${customerId}`;
 
     testScheduler.run(({ cold, expectObservable }) => {
       cold('-(a|)').subscribe((_) => {
@@ -563,8 +568,8 @@ describe('RentalDataService', () => {
   });
 
   it('getOverview returns error on failure', () => {
-    const url =
-      fleetBaseLink + `/rentals?customerId=${environment.CUSTOMER_ID}`;
+    service.customerId = customerId;
+    const url = fleetBaseLink + `/rentals?customerId=${customerId}`;
 
     const error = new HttpErrorResponse({
       status: 400,

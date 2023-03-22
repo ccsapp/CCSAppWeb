@@ -35,7 +35,7 @@ export class RentalDetailComponent implements OnInit, OnDestroy {
           this.titleService.setNavbarState({
             title: `${rental.car.brand} ${rental.car.model}`,
             titleIconPath: paths[rental.car.brand],
-            backButtonPath: '/rentals',
+            backButtonPath: '/dashboard',
           });
         },
         // hanlde error if rental not found
@@ -45,7 +45,7 @@ export class RentalDetailComponent implements OnInit, OnDestroy {
               err.status == HttpStatusCode.NotFound
                 ? 'Rental not found.'
                 : 'An Error Occurred',
-            backButtonPath: '/rentals',
+            backButtonPath: '/dashboard',
           });
         },
       });
