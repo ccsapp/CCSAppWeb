@@ -1,6 +1,6 @@
 # CCSAppWebVP
 
-CCSAppWebVP realizes the presentation layer of the CCSApp. The architecture and design of the app can be found [here](https://git.scc.kit.edu/cm-tm/cm-team/projectwork/pse/0-doc-ccs-app-v-2).
+CCSAppWebVP realizes the presentation layer of the CCSApp. The architecture and design of the app can be found [here](https://github.com/ccsapp/docs).
 
 > **Important**: CCSAppWebVP depends on the FleetManagement microservice to run. Therefore, you need to specify `API_URL` in your environment.
 
