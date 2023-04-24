@@ -28,6 +28,10 @@ Run `ng serve` to start a development server. A local webserver will be deployed
 
 The [local environment](/src/environments/environment.ts) sets the resource URL for the FleetManagement application microservice and the `fleetId` . If you want to use your local server, replace the `API_URL` .
 
+## Deployment
+
+To deploy please add an O-Auth issuer to the [environment](/src/environments/environment.prod.ts) file. Also make sure to set the BASE_URL and API URLs.
+
 ---
 
 ## Remarks from the devs of Angular:
