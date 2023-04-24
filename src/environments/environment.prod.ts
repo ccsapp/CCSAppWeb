@@ -1,8 +1,8 @@
 export const environment = {
-  BASE_URL: 'https://cm-ui-ccsappwebvp.cloud.iai.kit.edu',
+  BASE_URL: 'https://localhost:4200',
   production: true,
-  OAUTH_ISSUER: 'https://cm-keycloak.cloud.iai.kit.edu/realms/CM',
-  FLEETM_API_URL: 'https://cm-p-fleetm.cloud.iai.kit.edu',
-  RENTALM_API_URL: 'https://cm-rentalmgmt.cloud.iai.kit.edu',
+  OAUTH_ISSUER: 'https://set-your-oauth-issuer-here',
+  FLEETM_API_URL: 'https://localhost:8011',
+  RENTALM_API_URL: 'https://localhost:8012',
   FLEET_ID: 'xk48jpgz',
 };

@@ -1,6 +1,6 @@
 # CCSAppWebVP
 
-CCSAppWebVP realizes the presentation layer of the CCSApp. The architecture and design of the app can be found [here](https://git.scc.kit.edu/cm-tm/cm-team/projectwork/pse/0-doc-ccs-app-v-2).
+CCSAppWebVP realizes the presentation layer of the CCSApp. The architecture and design of the app can be found [here](https://github.com/ccsapp/docs).
 
 > **Important**: CCSAppWebVP depends on the FleetManagement microservice to run. Therefore, you need to specify `API_URL` in your environment.
 
@@ -27,6 +27,10 @@ The code style is checked by the CI pipeline. If the code style is not correct, 
 Run `ng serve` to start a development server. A local webserver will be deployed to `http://localhost:4200/` . The application will automatically reload if you change any of the source files.
 
 The [local environment](/src/environments/environment.ts) sets the resource URL for the FleetManagement application microservice and the `fleetId` . If you want to use your local server, replace the `API_URL` .
+
+## Deployment
+
+To deploy please add an O-Auth issuer to the [environment](/src/environments/environment.prod.ts) file. Also make sure to set the BASE_URL and API URLs.
 
 ---
 
